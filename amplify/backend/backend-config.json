@@ -1,0 +1,101 @@
+{
+  "auth": {
+    "pateweb": {
+      "service": "Cognito",
+      "serviceType": "imported",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  },
+  "parameters": {
+    "AMPLIFY_auth_pateweb_allowUnauthenticatedIdentities": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "pateweb"
+        }
+      ]
+    },
+    "AMPLIFY_auth_pateweb_authRoleArn": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "pateweb"
+        }
+      ]
+    },
+    "AMPLIFY_auth_pateweb_authRoleName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "pateweb"
+        }
+      ]
+    },
+    "AMPLIFY_auth_pateweb_identityPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "pateweb"
+        }
+      ]
+    },
+    "AMPLIFY_auth_pateweb_identityPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "pateweb"
+        }
+      ]
+    },
+    "AMPLIFY_auth_pateweb_nativeClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "pateweb"
+        }
+      ]
+    },
+    "AMPLIFY_auth_pateweb_unauthRoleArn": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "pateweb"
+        }
+      ]
+    },
+    "AMPLIFY_auth_pateweb_unauthRoleName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "pateweb"
+        }
+      ]
+    },
+    "AMPLIFY_auth_pateweb_userPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "pateweb"
+        }
+      ]
+    },
+    "AMPLIFY_auth_pateweb_userPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "pateweb"
+        }
+      ]
+    },
+    "AMPLIFY_auth_pateweb_webClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "pateweb"
+        }
+      ]
+    }
+  }
+}
