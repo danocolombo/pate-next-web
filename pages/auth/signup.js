@@ -20,7 +20,7 @@ import Favorite from '@mui/icons-material/Favorite';
 import Header from '/components/Header/PateHeader.js';
 import HeaderLinks from '/components/Header/PateHeaderLinks.js';
 import Footer from '/components/Footer/Footer.js';
-import PateFooter from '../pages-sections/footer/PateFooter';
+import PateFooter from '../../pages-sections/footer/PateFooter';
 import GridContainer from '/components/Grid/GridContainer.js';
 import GridItem from '/components/Grid/GridItem.js';
 import Button from '/components/CustomButtons/Button.js';
@@ -255,7 +255,7 @@ export default function SignUpPage({ ...rest }) {
                                                     >
                                                         <Link href='/signup'>
                                                             <a
-                                                                classname={{
+                                                                className={{
                                                                     color: 'black',
                                                                 }}
                                                             >

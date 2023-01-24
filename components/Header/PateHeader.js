@@ -1,5 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
+import { useSession, signIn, signOut } from 'next-auth/react';
+import Router from 'next/router';
 // nodejs library that concatenates classes
 import classNames from 'classnames';
 // nodejs library to set properties for components
@@ -21,6 +23,7 @@ const useStyles = makeStyles(styles);
 
 export default function Header(props) {
     const [mobileOpen, setMobileOpen] = React.useState(false);
+    const { data: session, status } = useSession();
     const classes = useStyles();
     React.useEffect(() => {
         if (props.changeColorOnScroll) {
@@ -62,6 +65,7 @@ export default function Header(props) {
         [classes.absolute]: absolute,
         [classes.fixed]: fixed,
     });
+
     return (
         <AppBar className={appBarClasses}>
             <Toolbar className={classes.container}>

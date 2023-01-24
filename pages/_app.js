@@ -16,6 +16,7 @@
 */
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { SessionProvider } from 'next-auth/react';
 import App from 'next/app';
 import Head from 'next/head';
 import Router from 'next/router';
@@ -24,6 +25,8 @@ import {
     createTheme,
     StyledEngineProvider,
 } from '@mui/material/styles';
+import { Amplify } from 'aws-amplify';
+import config from '../src/aws-exports';
 import { PateSystemContextProvider } from '/store/pateSystem-context';
 import PageChange from '/components/PageChange/PageChange.js';
 
@@ -69,6 +72,7 @@ Router.events.on('routeChangeError', () => {
     document.body.classList.remove('body-page-transition');
 });
 
+Amplify.configure({ ...config, ssr: false });
 export default class MyApp extends App {
     componentDidMount() {
         let comment = document.createComment(`
@@ -99,7 +103,10 @@ export default class MyApp extends App {
         return { pageProps };
     }
     render() {
-        const { Component, pageProps } = this.props;
+        const {
+            Component,
+            pageProps: { session, ...pageProps },
+        } = this.props;
 
         return (
             <React.Fragment>
@@ -111,13 +118,15 @@ export default class MyApp extends App {
                     <script src='https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE' />
                     <title>P8 Rallies</title>
                 </Head>
-                <ThemeProvider theme={theme}>
-                    <StyledEngineProvider injectFirst>
-                        <PateSystemContextProvider>
-                            <Component {...pageProps} />
-                        </PateSystemContextProvider>
-                    </StyledEngineProvider>
-                </ThemeProvider>
+                <SessionProvider session={session} refetchInterval={5 * 60}>
+                    <ThemeProvider theme={theme}>
+                        <StyledEngineProvider injectFirst>
+                            <PateSystemContextProvider>
+                                <Component {...pageProps} />
+                            </PateSystemContextProvider>
+                        </StyledEngineProvider>
+                    </ThemeProvider>
+                </SessionProvider>
             </React.Fragment>
         );
     }

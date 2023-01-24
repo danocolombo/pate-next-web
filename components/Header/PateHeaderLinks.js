@@ -1,5 +1,6 @@
 /* eslint-disable */
 import React, { useContext } from 'react';
+import { useSession, signIn, signOut } from 'next-auth/react';
 // nodejs library to set properties for components
 import PropTypes from 'prop-types';
 // react components for routing our app without refresh
@@ -48,6 +49,7 @@ import styles from '/styles/jss/nextjs-material-pate/components/headerLinksStyle
 const useStyles = makeStyles(styles);
 
 export default function HeaderLinks(props) {
+    const { data: session, status } = useSession();
     const pateCTX = useContext(PateSystemContext);
     console.log('header:', pateCTX.jwtToken);
     const easeInOutQuad = (t, b, c, d) => {
@@ -91,6 +93,11 @@ export default function HeaderLinks(props) {
         };
         animateScroll();
     };
+    function signOutHandler() {
+        signOut();
+        pateCTX.setToken(null);
+        Router.push('/');
+    }
     var onClickSections = {};
 
     const { dropdownHoverColor } = props;
@@ -98,7 +105,7 @@ export default function HeaderLinks(props) {
     return (
         <List className={classes.list + ' ' + classes.mlAuto}>
             <ListItem className={classes.listItem}>
-                {pateCTX.jwtToken ? (
+                {session ? (
                     <>
                         <Button round color='secondary'>
                             <Link href='/serve'>
@@ -113,7 +120,7 @@ export default function HeaderLinks(props) {
                         <Button
                             round
                             color='secondary'
-                            onClick={() => pateCTX.setToken(null)}
+                            onClick={() => signOutHandler()}
                         >
                             <a className={{ color: 'black' }}>Logout</a>
                         </Button>
