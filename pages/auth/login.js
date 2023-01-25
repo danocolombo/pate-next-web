@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useRef } from 'react';
 import makeStyles from '@mui/styles/makeStyles';
 import InputAdornment from '@mui/material/InputAdornment';
 import List from '@mui/material/List';
@@ -35,6 +35,7 @@ export default function LoginPage() {
     const { setCurrentSession, setCurrentUserInfo } = useSessionContext();
     console.log('Pate Version:', pateCTX.pateVersion);
     console.log('JWT Token:', pateCTX.jwtToken);
+    const inputUsernameRef = useRef();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     React.useEffect(() => {
@@ -44,17 +45,14 @@ export default function LoginPage() {
     const classes = useStyles();
     function loginTestHandler() {
         console.log('TEST-TEST-TEST');
+        console.log('ref:', inputUsernameRef.current);
         console.log('username:', username);
         console.log('password', password);
     }
     async function loginHandler() {
         let alertPayload = {};
-        let uname = process.env.TMP_LOGIN;
-        let pword = process.env.TMP_PASSWORD;
-        console.log('uname:', uname);
-        console.log('pword:', pword);
         try {
-            await Auth.signIn(uname, pword)
+            await Auth.signIn(username, password)
                 .then((user) => {
                     if (user.challengeName === 'NEW_PASSWORD_REQUIRED') {
                         const { requiredAttributes } = user.challengeParam; // the array of required attributes, e.g ['email', 'phone_number']
@@ -157,17 +155,21 @@ export default function LoginPage() {
     }
     const handleChange = (e) => {
         console.log('e:', e);
-        const { data, id } = e.target;
+        console.log('username/before', username);
+        const { value, id } = e.target;
+
         switch (id) {
             case 'username':
-                setUsername(data);
+                setUsername(value);
+                inputUsernameRef.current = value;
                 break;
             case 'password':
-                setPassword(data);
+                setPassword(value);
                 break;
             default:
                 break;
         }
+        console.log('username/after', username);
     };
     function signOutHandler() {
         signOut();
@@ -215,20 +217,21 @@ export default function LoginPage() {
                                                 placeholder: 'Username',
                                                 type: 'text',
                                                 value: username,
+                                                defaultValue: '',
                                                 onChange: handleChange,
                                             }}
                                         />
                                         <CustomInput
                                             id='password'
-                                            onChange={handleChange}
-                                            value={password}
                                             formControlProps={{
                                                 fullWidth: true,
                                             }}
                                             inputProps={{
                                                 placeholder: 'Password',
                                                 type: 'password',
-
+                                                defaultValue: '',
+                                                value: password,
+                                                onChange: handleChange,
                                                 autoComplete: 'off',
                                             }}
                                         />
@@ -237,7 +240,7 @@ export default function LoginPage() {
                                         <Button
                                             round
                                             color='secondary'
-                                            onClick={() => loginTestHandler()}
+                                            onClick={() => loginHandler()}
                                         >
                                             Sign In
                                         </Button>
