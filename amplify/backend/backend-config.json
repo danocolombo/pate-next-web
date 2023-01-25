@@ -1,6 +1,6 @@
 {
   "auth": {
-    "pateweb": {
+    "jericho": {
       "service": "Cognito",
       "serviceType": "imported",
       "providerPlugin": "awscloudformation",
@@ -8,94 +8,29 @@
       "customAuth": false
     }
   },
-  "parameters": {
-    "AMPLIFY_auth_pateweb_allowUnauthenticatedIdentities": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "pateweb"
+  "storage": {
+    "jerichos3": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": []
+    }
+  },
+  "api": {
+    "jericho": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "API_KEY",
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 7
+            }
+          },
+          "additionalAuthenticationProviders": []
         }
-      ]
-    },
-    "AMPLIFY_auth_pateweb_authRoleArn": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "pateweb"
-        }
-      ]
-    },
-    "AMPLIFY_auth_pateweb_authRoleName": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "pateweb"
-        }
-      ]
-    },
-    "AMPLIFY_auth_pateweb_identityPoolId": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "pateweb"
-        }
-      ]
-    },
-    "AMPLIFY_auth_pateweb_identityPoolName": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "pateweb"
-        }
-      ]
-    },
-    "AMPLIFY_auth_pateweb_nativeClientId": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "pateweb"
-        }
-      ]
-    },
-    "AMPLIFY_auth_pateweb_unauthRoleArn": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "pateweb"
-        }
-      ]
-    },
-    "AMPLIFY_auth_pateweb_unauthRoleName": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "pateweb"
-        }
-      ]
-    },
-    "AMPLIFY_auth_pateweb_userPoolId": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "pateweb"
-        }
-      ]
-    },
-    "AMPLIFY_auth_pateweb_userPoolName": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "pateweb"
-        }
-      ]
-    },
-    "AMPLIFY_auth_pateweb_webClientId": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "pateweb"
-        }
-      ]
+      }
     }
   }
 }

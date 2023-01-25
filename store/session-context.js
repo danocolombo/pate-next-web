@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect, useContext } from 'react';
 
 const SessionContext = createContext({
-    currentUserInfo: '',
+        : '',
     currentSession: '',
 });
 
