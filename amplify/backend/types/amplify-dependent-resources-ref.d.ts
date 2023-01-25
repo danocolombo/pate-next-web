@@ -1,12 +1,19 @@
 export type AmplifyDependentResourcesAttributes = {
+    "analytics": {
+        "patemobile": {
+            "Region": "string",
+            "Id": "string",
+            "appName": "string"
+        }
+    },
     "storage": {
-        "jerichos3": {
+        "s3eorimages2022": {
             "BucketName": "string",
             "Region": "string"
         }
     },
     "api": {
-        "jericho": {
+        "patemobile": {
             "GraphQLAPIKeyOutput": "string",
             "GraphQLAPIIdOutput": "string",
             "GraphQLAPIEndpointOutput": "string"

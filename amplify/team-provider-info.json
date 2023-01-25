@@ -1,34 +1,34 @@
 {
   "staging": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-jericho-staging-170250-authRole",
-      "UnauthRoleArn": "arn:aws:iam::226036691416:role/amplify-jericho-staging-170250-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::226036691416:role/amplify-jericho-staging-170250-authRole",
+      "AuthRoleName": "amplify-patemobile-staging-14132-authRole",
+      "UnauthRoleArn": "arn:aws:iam::226036691416:role/amplify-patemobile-staging-14132-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::226036691416:role/amplify-patemobile-staging-14132-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-jericho-staging-170250-deployment",
-      "UnauthRoleName": "amplify-jericho-staging-170250-unauthRole",
-      "StackName": "amplify-jericho-staging-170250",
-      "StackId": "arn:aws:cloudformation:us-east-1:226036691416:stack/amplify-jericho-staging-170250/cfd865e0-7a3e-11ed-b7bf-0a5f0ae7951f",
-      "AmplifyAppId": "d1l38x9dtu9zib"
+      "DeploymentBucketName": "amplify-patemobile-staging-14132-deployment",
+      "UnauthRoleName": "amplify-patemobile-staging-14132-unauthRole",
+      "StackName": "amplify-patemobile-staging-14132",
+      "StackId": "arn:aws:cloudformation:us-east-1:226036691416:stack/amplify-patemobile-staging-14132/777ce920-f1cc-11ec-8685-0e4d072aa857",
+      "AmplifyAppId": "d3gb4eqd68lu39"
     },
     "categories": {
       "auth": {
-        "jericho": {
-          "userPoolId": "us-east-1_LecNXt66q",
-          "userPoolName": "Meeter",
-          "webClientId": "3tn2h8s0mv2d342i1ovkr6qrd5",
-          "nativeClientId": "3tn2h8s0mv2d342i1ovkr6qrd5",
-          "identityPoolId": "us-east-1:5568f877-2766-4ea3-a9a6-442df0d29980",
-          "identityPoolName": "Meeter",
+        "patemobile": {
+          "userPoolId": "us-east-1_2AD4aPWxt",
+          "userPoolName": "pate20214e565539_userpool_4e565539-dev",
+          "webClientId": "6hd1l0kgekae1gq1oq4tupmuft",
+          "nativeClientId": "6hd1l0kgekae1gq1oq4tupmuft",
+          "identityPoolId": "us-east-1:7e9553eb-d401-4d7b-88fa-0d98c646e093",
+          "identityPoolName": "pate20214e565539_identitypool_4e565539__dev",
           "allowUnauthenticatedIdentities": true,
-          "authRoleArn": "arn:aws:iam::226036691416:role/Cognito_MeeterAuth_Role",
-          "authRoleName": "Cognito_MeeterAuth_Role",
-          "unauthRoleArn": "arn:aws:iam::226036691416:role/Cognito_MeeterUnauth_Role",
-          "unauthRoleName": "Cognito_MeeterUnauth_Role"
+          "authRoleArn": "arn:aws:iam::226036691416:role/amplify-pate2021-dev-175248-authRole",
+          "authRoleName": "amplify-pate2021-dev-175248-authRole",
+          "unauthRoleArn": "arn:aws:iam::226036691416:role/amplify-pate2021-dev-175248-unauthRole",
+          "unauthRoleName": "amplify-pate2021-dev-175248-unauthRole"
         }
       },
       "storage": {
-        "jerichos3": {}
+        "s3eorimages2022": {}
       }
     }
   }
