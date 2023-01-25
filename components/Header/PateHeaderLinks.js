@@ -1,10 +1,10 @@
 /* eslint-disable */
 import React, { useContext } from 'react';
-import { useSession, signIn, signOut } from 'next-auth/react';
+import Head from 'next/head';
+import Link from 'next/link';
 // nodejs library to set properties for components
 import PropTypes from 'prop-types';
 // react components for routing our app without refresh
-import Link from 'next/link';
 
 import makeStyles from '@mui/styles/makeStyles';
 import List from '@mui/material/List';
@@ -49,9 +49,10 @@ import styles from '/styles/jss/nextjs-material-pate/components/headerLinksStyle
 const useStyles = makeStyles(styles);
 
 export default function HeaderLinks(props) {
-    const { data: session, status } = useSession();
     const pateCTX = useContext(PateSystemContext);
+    console.log('##########################################');
     console.log('header:', pateCTX.jwtToken);
+    console.log('##########################################');
     const easeInOutQuad = (t, b, c, d) => {
         t /= d / 2;
         if (t < 1) return (c / 2) * t * t + b;
@@ -102,35 +103,41 @@ export default function HeaderLinks(props) {
 
     const { dropdownHoverColor } = props;
     const classes = useStyles();
+    const loginRequestHandler = () => {
+        signIn('cognito');
+        // signIn('cognito', {
+        //     callbackUrl: `${window.location.origin}/sections`,
+        // });
+    };
     return (
         <List className={classes.list + ' ' + classes.mlAuto}>
             <ListItem className={classes.listItem}>
-                {session ? (
+                {pateCTX.jwtToken ? (
                     <>
-                        <Button round color='secondary'>
+                        <Button round color='primary'>
                             <Link href='/serve'>
                                 <a className={{ color: 'black' }}>Serve</a>
                             </Link>
                         </Button>
-                        <Button round color='secondary'>
-                            <Link href='/serve'>
+                        <Button round color='primary'>
+                            <Link href='/profile'>
                                 <a className={{ color: 'black' }}>Profile</a>
                             </Link>
                         </Button>
-                        <Button
-                            round
-                            color='secondary'
-                            onClick={() => signOutHandler()}
-                        >
-                            <a className={{ color: 'black' }}>Logout</a>
+                        <Button round color='logout' onClick={signOutHandler}>
+                            Logout
                         </Button>
                     </>
                 ) : (
-                    <Button round color='secondary'>
-                        <Link href='/login'>
-                            <a className={{ color: 'black' }}>Signin/Signup</a>
-                        </Link>
-                    </Button>
+                    <>
+                        <Button
+                            round
+                            color='primary'
+                            onClick={loginRequestHandler}
+                        >
+                            Signin/Signup
+                        </Button>
+                    </>
                 )}
             </ListItem>
         </List>

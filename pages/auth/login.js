@@ -1,6 +1,5 @@
 /*eslint-disable*/
 import React, { useContext, useState } from 'react';
-import { useSession, signIn, signOut } from 'next-auth/react';
 import makeStyles from '@mui/styles/makeStyles';
 import InputAdornment from '@mui/material/InputAdornment';
 import List from '@mui/material/List';
@@ -30,7 +29,6 @@ import PateSystemContext from '../../store/pateSystem-context';
 const useStyles = makeStyles(loginPageStyle);
 
 export default function LoginPage() {
-    const { data: session, status } = useSession();
     const pateCTX = useContext(PateSystemContext);
     console.log('Pate Version:', pateCTX.pateVersion);
     console.log('JWT Token:', pateCTX.jwtToken);

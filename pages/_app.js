@@ -16,7 +16,6 @@
 */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { SessionProvider } from 'next-auth/react';
 import App from 'next/app';
 import Head from 'next/head';
 import Router from 'next/router';
@@ -27,6 +26,7 @@ import {
 } from '@mui/material/styles';
 import { Amplify } from 'aws-amplify';
 import config from '../src/aws-exports';
+
 import { PateSystemContextProvider } from '/store/pateSystem-context';
 import PageChange from '/components/PageChange/PageChange.js';
 
@@ -118,7 +118,7 @@ export default class MyApp extends App {
                     <script src='https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE' />
                     <title>P8 Rallies</title>
                 </Head>
-                <SessionProvider session={session} refetchInterval={5 * 60}>
+                <PateSystemContextProvider>
                     <ThemeProvider theme={theme}>
                         <StyledEngineProvider injectFirst>
                             <PateSystemContextProvider>
@@ -126,7 +126,7 @@ export default class MyApp extends App {
                             </PateSystemContextProvider>
                         </StyledEngineProvider>
                     </ThemeProvider>
-                </SessionProvider>
+                </PateSystemContextProvider>
             </React.Fragment>
         );
     }
