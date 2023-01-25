@@ -25,11 +25,14 @@ import loginPageStyle from '/styles/jss/nextjs-material-pate/pages/loginPageStyl
 import PateFooter from '../../pages-sections/footer/PateFooter';
 import Link from 'next/link';
 import PateSystemContext from '../../store/pateSystem-context';
-
+import SessionContext from '../../store/session-context';
+import { useSessionContext } from '../../store/session-context';
 const useStyles = makeStyles(loginPageStyle);
 
 export default function LoginPage() {
     const pateCTX = useContext(PateSystemContext);
+    const sessionCTX = useContext(SessionContext);
+    const { setCurrentSession, setCurrentUserInfo } = useSessionContext();
     console.log('Pate Version:', pateCTX.pateVersion);
     console.log('JWT Token:', pateCTX.jwtToken);
     const [username, setUsername] = useState('');
@@ -39,10 +42,17 @@ export default function LoginPage() {
         document.body.scrollTop = 0;
     });
     const classes = useStyles();
+    function loginTestHandler() {
+        console.log('TEST-TEST-TEST');
+        console.log('username:', username);
+        console.log('password', password);
+    }
     async function loginHandler() {
         let alertPayload = {};
-        let uname = 'dcolombo';
-        let pword = 'R0mans1212!';
+        let uname = process.env.TMP_LOGIN;
+        let pword = process.env.TMP_PASSWORD;
+        console.log('uname:', uname);
+        console.log('pword:', pword);
         try {
             await Auth.signIn(uname, pword)
                 .then((user) => {
@@ -106,9 +116,11 @@ export default function LoginPage() {
             });
             // we will get true if user is registered or false if not
             //* +++ WE GOT DETAILS +++
-            // console.log('currentUserInfo:\n', currentUserInfo);
-            // console.log('currentSession:\n', currentSession);
+            console.log('currentUserInfo:\n', currentUserInfo);
+            setCurrentUserInfo(currentUserInfo);
+            console.log('currentSession:\n', currentSession);
             pateCTX.setToken(currentSession.idToken.jwtToken);
+            setCurrentSession(currentSession);
             // const userIsRegistered = await saveUser(
             //     currentUserInfo,
             //     currentSession
@@ -144,13 +156,14 @@ export default function LoginPage() {
         }
     }
     const handleChange = (e) => {
-        const { value, name } = e.target;
-        switch (name) {
+        console.log('e:', e);
+        const { data, id } = e.target;
+        switch (id) {
             case 'username':
-                setUsername(value);
+                setUsername(data);
                 break;
             case 'password':
-                setPassword(value);
+                setPassword(data);
                 break;
             default:
                 break;
@@ -195,14 +208,14 @@ export default function LoginPage() {
                                     <CardBody signup>
                                         <CustomInput
                                             id='username'
-                                            onChange={handleChange}
-                                            value={username}
                                             formControlProps={{
                                                 fullWidth: true,
                                             }}
                                             inputProps={{
                                                 placeholder: 'Username',
                                                 type: 'text',
+                                                value: username,
+                                                onChange: handleChange,
                                             }}
                                         />
                                         <CustomInput
@@ -224,7 +237,7 @@ export default function LoginPage() {
                                         <Button
                                             round
                                             color='secondary'
-                                            onClick={() => loginHandler()}
+                                            onClick={() => loginTestHandler()}
                                         >
                                             Sign In
                                         </Button>

@@ -28,6 +28,8 @@ import { Amplify } from 'aws-amplify';
 import config from '../src/aws-exports';
 
 import { PateSystemContextProvider } from '/store/pateSystem-context';
+import { SessionContextProvider } from '/store/session-context';
+import { UserContextProvider } from '/store/user-context';
 import PageChange from '/components/PageChange/PageChange.js';
 
 import '/styles/scss/nextjs-material-kit-pro.scss';
@@ -119,13 +121,17 @@ export default class MyApp extends App {
                     <title>P8 Rallies</title>
                 </Head>
                 <PateSystemContextProvider>
-                    <ThemeProvider theme={theme}>
-                        <StyledEngineProvider injectFirst>
-                            <PateSystemContextProvider>
-                                <Component {...pageProps} />
-                            </PateSystemContextProvider>
-                        </StyledEngineProvider>
-                    </ThemeProvider>
+                    <SessionContextProvider>
+                        <UserContextProvider>
+                            <ThemeProvider theme={theme}>
+                                <StyledEngineProvider injectFirst>
+                                    <PateSystemContextProvider>
+                                        <Component {...pageProps} />
+                                    </PateSystemContextProvider>
+                                </StyledEngineProvider>
+                            </ThemeProvider>
+                        </UserContextProvider>
+                    </SessionContextProvider>
                 </PateSystemContextProvider>
             </React.Fragment>
         );
