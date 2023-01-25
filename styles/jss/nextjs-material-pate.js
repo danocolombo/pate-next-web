@@ -55,14 +55,15 @@ const hexToRgb = (input) => {
 const drawerWidth = 260;
 
 const primaryColor = [
+    '#8AAEFA',
     '#457FFB',
+    '#4279EF',
     '#4279EF',
     '#1C5FED',
     '#1453DB',
-    '#8AAEFA',
-    '#4279EF',
 ];
 const secondaryColor = ['#fafafa'];
+const contrastColor = ['#ffff00', '#ff9800'];
 const warningColor = [
     '#ff9800',
     '#ffa726',
@@ -460,6 +461,7 @@ export {
     card,
     defaultFont,
     primaryColor,
+    contrastColor,
     secondaryColor,
     warningColor,
     dangerColor,

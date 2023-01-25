@@ -1,5 +1,6 @@
 /*eslint-disable*/
-import React from 'react';
+import React, { useEffect } from 'react';
+import Router from 'next/router';
 import Link from 'next/link';
 import makeStyles from '@mui/styles/makeStyles';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -8,6 +9,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Icon from '@mui/material/Icon';
+import { useSessionContext } from '../../store/session-context';
 // @mui/icons-material
 import Timeline from '@mui/icons-material/Timeline';
 import Code from '@mui/icons-material/Code';
@@ -34,6 +36,7 @@ import ServeEventsCard from '../../pages-sections/serve/ServeEventsCard';
 const useStyles = makeStyles(servePageStyle);
 
 export default function ServePage({ ...rest }) {
+    const { currentSession } = useSessionContext();
     const myRallies = [
         {
             meal: {
@@ -391,10 +394,16 @@ export default function ServePage({ ...rest }) {
         }
         setChecked(newChecked);
     };
-    React.useEffect(() => {
+    useEffect(() => {
         window.scrollTo(0, 0);
         document.body.scrollTop = 0;
     });
+    useEffect(() => {
+        if (!currentSession?.idToken?.jwtToken) {
+            Router.back();
+        }
+    }, []);
+
     const classes = useStyles();
     return (
         <div>

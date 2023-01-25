@@ -1,10 +1,11 @@
 /* eslint-disable */
 import React, { useContext } from 'react';
+import Head from 'next/head';
+import Link from 'next/link';
 // nodejs library to set properties for components
 import PropTypes from 'prop-types';
 // react components for routing our app without refresh
-import Link from 'next/link';
-
+import { useSessionContext } from '../../store/session-context';
 import makeStyles from '@mui/styles/makeStyles';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -49,7 +50,11 @@ const useStyles = makeStyles(styles);
 
 export default function HeaderLinks(props) {
     const pateCTX = useContext(PateSystemContext);
+    const { currentSession, currentUserInfo } = useSessionContext();
+    console.log('##########################################');
     console.log('header:', pateCTX.jwtToken);
+    console.log('currentUserInfo.username:', currentUserInfo?.username);
+    console.log('##########################################');
     const easeInOutQuad = (t, b, c, d) => {
         t /= d / 2;
         if (t < 1) return (c / 2) * t * t + b;
@@ -91,39 +96,53 @@ export default function HeaderLinks(props) {
         };
         animateScroll();
     };
+    function signOutHandler() {
+        signOut();
+        pateCTX.setToken(null);
+        Router.push('/');
+    }
     var onClickSections = {};
 
     const { dropdownHoverColor } = props;
     const classes = useStyles();
+    const loginRequestHandler = () => {
+        signIn('cognito');
+        // signIn('cognito', {
+        //     callbackUrl: `${window.location.origin}/sections`,
+        // });
+    };
     return (
         <List className={classes.list + ' ' + classes.mlAuto}>
             <ListItem className={classes.listItem}>
                 {pateCTX.jwtToken ? (
                     <>
-                        <Button round color='secondary'>
+                        <Button round color='primary'>
                             <Link href='/serve'>
                                 <a className={{ color: 'black' }}>Serve</a>
                             </Link>
                         </Button>
-                        <Button round color='secondary'>
-                            <Link href='/serve'>
+                        <Button round color='primary'>
+                            <Link href='/profile'>
                                 <a className={{ color: 'black' }}>Profile</a>
                             </Link>
                         </Button>
-                        <Button
-                            round
-                            color='secondary'
-                            onClick={() => pateCTX.setToken(null)}
-                        >
-                            <a className={{ color: 'black' }}>Logout</a>
+                        <Button round color='primary'>
+                            <Link href='/profile'>
+                                <a className={{ color: 'black' }}>Profile</a>
+                            </Link>
+                        </Button>
+                        <Button round color='logout' onClick={signOutHandler}>
+                            Logout
                         </Button>
                     </>
                 ) : (
-                    <Button round color='secondary'>
-                        <Link href='/login'>
-                            <a className={{ color: 'black' }}>Signin/Signup</a>
-                        </Link>
-                    </Button>
+                    <>
+                        <Button round color='primary'>
+                            <Link href='/auth/login'>
+                                <a>Signin/Signup</a>
+                            </Link>
+                        </Button>
+                    </>
                 )}
             </ListItem>
         </List>

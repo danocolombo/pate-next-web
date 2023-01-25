@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Router from 'next/router';
 // nodejs library that concatenates classes
 import classNames from 'classnames';
 // nodejs library to set properties for components
@@ -62,6 +63,7 @@ export default function Header(props) {
         [classes.absolute]: absolute,
         [classes.fixed]: fixed,
     });
+
     return (
         <AppBar className={appBarClasses}>
             <Toolbar className={classes.container}>
