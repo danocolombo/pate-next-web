@@ -1,6 +1,7 @@
 /*eslint-disable*/
-import React, { useContext, useState, useRef } from 'react';
+import React, { useContext, useState } from 'react';
 import makeStyles from '@mui/styles/makeStyles';
+import Router from 'next/router';
 import InputAdornment from '@mui/material/InputAdornment';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -35,7 +36,6 @@ export default function LoginPage() {
     const { setCurrentSession, setCurrentUserInfo } = useSessionContext();
     console.log('Pate Version:', pateCTX.pateVersion);
     console.log('JWT Token:', pateCTX.jwtToken);
-    const inputUsernameRef = useRef();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     React.useEffect(() => {
@@ -43,12 +43,7 @@ export default function LoginPage() {
         document.body.scrollTop = 0;
     });
     const classes = useStyles();
-    function loginTestHandler() {
-        console.log('TEST-TEST-TEST');
-        console.log('ref:', inputUsernameRef.current);
-        console.log('username:', username);
-        console.log('password', password);
-    }
+
     async function loginHandler() {
         let alertPayload = {};
         try {
@@ -132,6 +127,8 @@ export default function LoginPage() {
 
             // clearSpinner();
             // userIsRegistered ? history.push('/') : history.push('/profile');
+
+            Router.replace('/');
         } catch (error) {
             switch (error) {
                 case 'No current user':
@@ -154,14 +151,10 @@ export default function LoginPage() {
         }
     }
     const handleChange = (e) => {
-        console.log('e:', e);
-        console.log('username/before', username);
         const { value, id } = e.target;
-
         switch (id) {
             case 'username':
                 setUsername(value);
-                inputUsernameRef.current = value;
                 break;
             case 'password':
                 setPassword(value);
@@ -169,7 +162,6 @@ export default function LoginPage() {
             default:
                 break;
         }
-        console.log('username/after', username);
     };
     function signOutHandler() {
         signOut();
@@ -217,7 +209,6 @@ export default function LoginPage() {
                                                 placeholder: 'Username',
                                                 type: 'text',
                                                 value: username,
-                                                defaultValue: '',
                                                 onChange: handleChange,
                                             }}
                                         />
@@ -229,7 +220,6 @@ export default function LoginPage() {
                                             inputProps={{
                                                 placeholder: 'Password',
                                                 type: 'password',
-                                                defaultValue: '',
                                                 value: password,
                                                 onChange: handleChange,
                                                 autoComplete: 'off',

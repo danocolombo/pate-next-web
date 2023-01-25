@@ -5,7 +5,7 @@ import Link from 'next/link';
 // nodejs library to set properties for components
 import PropTypes from 'prop-types';
 // react components for routing our app without refresh
-
+import { useSessionContext } from '../../store/session-context';
 import makeStyles from '@mui/styles/makeStyles';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -50,8 +50,10 @@ const useStyles = makeStyles(styles);
 
 export default function HeaderLinks(props) {
     const pateCTX = useContext(PateSystemContext);
+    const { currentSession, currentUserInfo } = useSessionContext();
     console.log('##########################################');
     console.log('header:', pateCTX.jwtToken);
+    console.log('currentUserInfo.username:', currentUserInfo?.username);
     console.log('##########################################');
     const easeInOutQuad = (t, b, c, d) => {
         t /= d / 2;
