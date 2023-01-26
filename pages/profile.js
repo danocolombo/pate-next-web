@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 // nodejs library that concatenates classes
 import classNames from 'classnames';
 import makeStyles from '@mui/styles/makeStyles';
@@ -15,6 +15,7 @@ import Favorite from '@mui/icons-material/Favorite';
 // core components
 import Header from '/components/Header/PateHeader.js';
 import Footer from '/components/Footer/Footer.js';
+import ProfileForm from '../pages-sections/profile/SectionProfileForm';
 import PateFooter from '../pages-sections/footer/PateFooter';
 import GridContainer from '/components/Grid/GridContainer.js';
 import GridItem from '/components/Grid/GridItem.js';
@@ -74,67 +75,16 @@ export default function ProfilePage({ ...rest }) {
                                         className={imageClasses}
                                     />
                                 </div>
-                                <div className={classes.name}>
-                                    <h3 className={classes.title}>
-                                        Christian Louboutin
-                                    </h3>
-                                    <h6>DESIGNER</h6>
-                                    <Button
-                                        justIcon
-                                        simple
-                                        color='dribbble'
-                                        className={classes.margin5}
-                                    >
-                                        <i
-                                            className={
-                                                classes.socials +
-                                                ' fab fa-dribbble'
-                                            }
-                                        />
-                                    </Button>
-                                    <Button
-                                        justIcon
-                                        simple
-                                        color='twitter'
-                                        className={classes.margin5}
-                                    >
-                                        <i
-                                            className={
-                                                classes.socials +
-                                                ' fab fa-twitter'
-                                            }
-                                        />
-                                    </Button>
-                                    <Button
-                                        justIcon
-                                        simple
-                                        color='pinterest'
-                                        className={classes.margin5}
-                                    >
-                                        <i
-                                            className={
-                                                classes.socials +
-                                                ' fab fa-pinterest'
-                                            }
-                                        />
-                                    </Button>
-                                </div>
                             </div>
                         </GridItem>
                     </GridContainer>
                     <div
                         className={classNames(
-                            classes.description,
+                            classes.formSection,
                             classes.textCenter
                         )}
                     >
-                        <p>
-                            An artist of considerable range, Chet Faker — the
-                            name taken by Melbourne-raised, Brooklyn-based Nick
-                            Murphy — writes, performs and records all of his own
-                            music, giving it a warm, intimate feel with a solid
-                            groove structure.{' '}
-                        </p>
+                        <ProfileForm />
                     </div>
                     <div className={classes.profileTabs}>
                         <NavPills

@@ -37,6 +37,12 @@ const profilePageStyle = {
         maxWidth: '600px',
         color: grayColor[0],
     },
+    formSection: {
+        // margin: '1.071rem auto 0',
+        margin: '0 auto 0',
+        maxWidth: '600px',
+        color: grayColor[0],
+    },
     textCenter: {
         textAlign: 'center !important',
     },
