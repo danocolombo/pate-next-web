@@ -19,7 +19,7 @@ import GridItem from '/components/Grid/GridItem.js';
 import Button from '/components/CustomButtons/Button.js';
 // sections for this page
 import SectionText from '/pages-sections/landing-intro/SectionText.js';
-
+import SectionNewsletter from '../pages-sections/newsletterSection/SectionNewsletter';
 import landingPageStyle from '/styles/jss/nextjs-material-pate/pages/blogPostPageStyle.js';
 
 const useStyles = makeStyles(landingPageStyle);
@@ -62,6 +62,11 @@ export default function BlogPostPage() {
             <div className={classes.main}>
                 <div className={classes.container}>
                     <SectionText />
+                </div>
+            </div>
+            <div className={classes.main}>
+                <div className={classes.container}>
+                    <SectionNewsletter />
                 </div>
             </div>
             <Footer content={<PateFooter />} />

@@ -8,7 +8,7 @@ import GridItem from '/components/Grid/GridItem.js';
 import Quote from '/components/Typography/Quote.js';
 // core components
 
-import sectionTextStyle from '/styles/jss/nextjs-material-kit-pro/pages/blogPostSections/sectionTextStyle.js';
+import sectionTextStyle from '/styles/jss/nextjs-material-pate/pages/landingPageSections/sectionTextStyle.js';
 
 const useStyles = makeStyles(sectionTextStyle);
 
@@ -27,8 +27,8 @@ export default function SectionText() {
                     <p>
                         Principle Eight, also known as P8, is reference to
                         principle eight of the Celebrate Recovery ministry.
-                        <br />
                     </p>
+
                     <Quote
                         textClassName={classes.quoteText}
                         text='“Yield myself to God to be used to bring this Good News to others, both by may example and my words.”'

@@ -1,21 +1,15 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect, useContext } from 'react';
 
 const UserContext = createContext({
-    pateVersion: '',
-    jwtToken: '',
+    profile: '',
 });
 
 export function UserContextProvider(props) {
-    const [pateVersion, setPateVersion] = useState('1.1.0');
-    const [jwtToken, setJwtToken] = useState();
+    const [profile, setProfile] = useState();
 
-    const setToken = (value) => {
-        setJwtToken(value);
-    };
     const context = {
-        pateVersion,
-        jwtToken,
-        setToken,
+        profile,
+        setProfile,
     };
 
     return (
@@ -26,3 +20,4 @@ export function UserContextProvider(props) {
 }
 
 export default UserContext;
+export const useUserContext = () => useContext(UserContext);
