@@ -44,7 +44,7 @@ import InfoArea from "/components/InfoArea/InfoArea.js";
 import Accordion from "/components/Accordion/Accordion.js";
 import ImageUpload from "/components/CustomUpload/ImageUpload.js";
 import javascriptStyles from "/styles/jss/nextjs-material-kit-pro/pages/componentsSections/javascriptStyles.js";
-
+  
 const useStyles = makeStyles(javascriptStyles);
 
 const Transition = React.forwardRef(function Transition(props, ref) {
