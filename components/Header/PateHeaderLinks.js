@@ -41,9 +41,8 @@ import Error from '@mui/icons-material/Error';
 
 // core components
 import PateSystemContext from '../../store/pateSystem-context';
-import CustomDropdown from '/components/CustomDropdown/CustomDropdown.js';
 import Button from '/components/CustomButtons/Button.js';
-
+import SectionHeaderLogin from '../../pages-sections/sections-page/SectionHeaderLogin';
 import styles from '/styles/jss/nextjs-material-pate/components/headerLinksStyle.js';
 
 const useStyles = makeStyles(styles);
@@ -142,6 +141,7 @@ export default function HeaderLinks(props) {
                                 <a>Signin/Signup</a>
                             </Link>
                         </Button>
+                        <SectionHeaderLogin />
                     </>
                 )}
             </ListItem>
