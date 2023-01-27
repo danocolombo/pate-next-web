@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 // nodejs library to set properties for components
@@ -38,12 +38,10 @@ import Layers from '@mui/icons-material/Layers';
 import ShoppingBasket from '@mui/icons-material/ShoppingBasket';
 import LineStyle from '@mui/icons-material/LineStyle';
 import Error from '@mui/icons-material/Error';
-
 // core components
 import PateSystemContext from '../../store/pateSystem-context';
-import CustomDropdown from '/components/CustomDropdown/CustomDropdown.js';
 import Button from '/components/CustomButtons/Button.js';
-
+import SectionHeaderLogin from '../../pages-sections/sections-page/SectionHeaderLogin';
 import styles from '/styles/jss/nextjs-material-pate/components/headerLinksStyle.js';
 
 const useStyles = makeStyles(styles);
@@ -105,12 +103,7 @@ export default function HeaderLinks(props) {
 
     const { dropdownHoverColor } = props;
     const classes = useStyles();
-    const loginRequestHandler = () => {
-        signIn('cognito');
-        // signIn('cognito', {
-        //     callbackUrl: `${window.location.origin}/sections`,
-        // });
-    };
+
     return (
         <List className={classes.list + ' ' + classes.mlAuto}>
             <ListItem className={classes.listItem}>
@@ -137,11 +130,7 @@ export default function HeaderLinks(props) {
                     </>
                 ) : (
                     <>
-                        <Button round color='primary'>
-                            <Link href='/auth/login'>
-                                <a>Signin/Signup</a>
-                            </Link>
-                        </Button>
+                        <SectionHeaderLogin />
                     </>
                 )}
             </ListItem>

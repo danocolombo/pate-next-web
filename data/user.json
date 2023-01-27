@@ -1,0 +1,53 @@
+{
+    "statusCode": 200,
+    "body": {
+        "Items": [
+            {
+                "lastName": "Colombo",
+                "residence": {
+                    "stateProv": "GA",
+                    "city": "Columbus",
+                    "street": "2304 Leah Drive",
+                    "postalCode": "31909"
+                },
+                "profile": true,
+                "affiliations": {
+                    "options": [
+                        {
+                            "value": "CRP8",
+                            "label": "CR P8 Rallies"
+                        },
+                        {
+                            "label": "FES Testing",
+                            "role": "guest",
+                            "region": "us#test#south#tt",
+                            "value": "FEO"
+                        }
+                    ],
+                    "active": {
+                        "label": "CR P8 Rallies",
+                        "divisionId": "271a8cbb-15b4-4f90-ba9f-a5d348206493",
+                        "region": "us#east#south",
+                        "value": "CRP8"
+                    }
+                },
+                "email": "danocolombo@gmail.com",
+                "uid": "2500b1de-1b8a-4943-9d7f-384783d90400",
+                "firstName": "Dano",
+                "role": "rep",
+                "affiliate": {
+                    "name": "Wynnbrook Church",
+                    "stateProv": "GA",
+                    "city": "Columbus"
+                },
+                "username": "dcolombo",
+                "region": "us#east#south#ga",
+                "stateRep": "GA",
+                "phone": "7066042494",
+                "isLoggedIn": true
+            }
+        ],
+        "Count": 1,
+        "ScannedCount": 1
+    }
+}
