@@ -20,10 +20,12 @@ import Button from '/components/CustomButtons/Button.js';
 // sections for this page
 import SectionText from '/pages-sections/landing-intro/SectionText.js';
 import SectionNewsletter from '../pages-sections/newsletterSection/SectionNewsletter';
+import SectionRallyList from '../pages-sections/rallies/SectionRallyList';
 import landingPageStyle from '/styles/jss/nextjs-material-pate/pages/blogPostPageStyle.js';
 
 const useStyles = makeStyles(landingPageStyle);
 
+import rallies from '../data/event.json';
 export default function BlogPostPage() {
     const pateCTX = useContext(PateSystemContext);
     console.log('Pate Version: ', pateCTX.pateVersion);
@@ -59,6 +61,11 @@ export default function BlogPostPage() {
                     </GridContainer>
                 </div>
             </Parallax>
+            <div className={classes.main}>
+                <div className={classes.container}>
+                    <SectionRallyList rallies={rallies} />
+                </div>
+            </div>
             <div className={classes.main}>
                 <div className={classes.container}>
                     <SectionText />

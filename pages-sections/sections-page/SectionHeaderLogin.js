@@ -6,6 +6,7 @@ import Slide from '@mui/material/Slide';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
+import { CircularProgress } from '@mui/material';
 import DialogActions from '@mui/material/DialogActions';
 import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -55,7 +56,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 Transition.displayName = 'Transition';
 
 export default function SectionHeaderLogin({ ...rest }) {
-    const [isLoading, setIsLoading] = useState();
+    const [isLoading, setIsLoading] = useState(true);
     const [loginModal, setLoginModal] = useState(false);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -96,8 +97,11 @@ export default function SectionHeaderLogin({ ...rest }) {
             // clearSpinner();
         }
         setIsLoading(false);
+        setLoginModal(false);
     }
-
+    if (isLoading) {
+        <CircularProgress color='primary' />;
+    }
     return (
         <div className='cd-section' {...rest}>
             {/* BUTTON LOGIN MODAL */}

@@ -104,6 +104,7 @@ const infoColor = [
     '#b2ebf2',
     '#4dd0e1',
 ];
+const cobaltColor = ['#3d59ab', '#0047ab', '#2e37fe', '#6666ff'];
 const roseColor = ['#e91e63', '#ec407a', '#d81b60', '#f8bbd0', '#f06292'];
 const grayColor = [
     '#999',
@@ -259,6 +260,14 @@ const roseBoxShadow = {
         hexToRgb(roseColor[0]) +
         ', 0.4)',
 };
+const cobaltBoxShadow = {
+    boxShadow:
+        '0 4px 20px 0px rgba(' +
+        hexToRgb(blackColor) +
+        ', 0.14), 0 7px 10px -5px rgba(' +
+        hexToRgb(cobaltColor[2]) +
+        ', 0.4)',
+};
 
 const warningCardHeader = {
     color: whiteColor,
@@ -311,6 +320,16 @@ const roseCardHeader = {
     background:
         'linear-gradient(60deg, ' + roseColor[1] + ', ' + roseColor[2] + ')',
     ...roseBoxShadow,
+};
+const cobaltCardHeader = {
+    color: whiteColor,
+    background:
+        'linear-gradient(60deg, ' +
+        cobaltColor[2] +
+        ', ' +
+        cobaltColor[3] +
+        ')',
+    ...cobaltBoxShadow,
 };
 const cardActions = {
     margin: '0 20px 10px',
@@ -468,6 +487,7 @@ export {
     successColor,
     infoColor,
     roseColor,
+    cobaltColor,
     grayColor,
     whiteColor,
     blackColor,
@@ -488,12 +508,14 @@ export {
     warningBoxShadow,
     dangerBoxShadow,
     roseBoxShadow,
+    cobaltBoxShadow,
     warningCardHeader,
     successCardHeader,
     dangerCardHeader,
     infoCardHeader,
     primaryCardHeader,
     roseCardHeader,
+    cobaltCardHeader,
     cardActions,
     cardHeader,
     defaultBoxShadow,
