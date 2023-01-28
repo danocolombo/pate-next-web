@@ -81,7 +81,7 @@ async function handler(req, res) {
                                     currentUserInfo: currentUserInfo,
                                     currentSession: currentSession,
                                     userProfile: {
-                                        error: error)
+                                        error: error,
                                     },
                                 },
                             });

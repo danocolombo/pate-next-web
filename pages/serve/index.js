@@ -9,7 +9,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Icon from '@mui/material/Icon';
-import { useSessionContext } from '../../store/session-context';
+import { useUserContext } from '../../store/user-context';
 // @mui/icons-material
 import Timeline from '@mui/icons-material/Timeline';
 import Code from '@mui/icons-material/Code';
@@ -36,7 +36,7 @@ import ServeEventsCard from '../../pages-sections/serve/ServeEventsCard';
 const useStyles = makeStyles(servePageStyle);
 
 export default function ServePage({ ...rest }) {
-    const { currentSession } = useSessionContext();
+    const { sessionToken } = useUserContext();
     const myRallies = [
         {
             meal: {
@@ -399,7 +399,7 @@ export default function ServePage({ ...rest }) {
         document.body.scrollTop = 0;
     });
     useEffect(() => {
-        if (!currentSession?.idToken?.jwtToken) {
+        if (!sessionToken) {
             Router.back();
         }
     }, []);

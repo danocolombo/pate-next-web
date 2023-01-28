@@ -44,6 +44,7 @@ import CustomFileInput from '/components/CustomFileInput/CustomFileInput.js';
 import InfoArea from '/components/InfoArea/InfoArea.js';
 import Accordion from '/components/Accordion/Accordion.js';
 import ImageUpload from '/components/CustomUpload/ImageUpload.js';
+import { useUserContext } from '../../store/user-context';
 import javascriptStyles from '/styles/jss/nextjs-material-kit-pro/pages/componentsSections/javascriptStyles.js';
 import { Password } from '@mui/icons-material';
 
@@ -56,6 +57,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 Transition.displayName = 'Transition';
 
 export default function SectionHeaderLogin({ ...rest }) {
+    const { processLogin } = useUserContext();
     const [isLoading, setIsLoading] = useState(true);
     const [loginModal, setLoginModal] = useState(false);
     const [username, setUsername] = useState('');
@@ -92,6 +94,7 @@ export default function SectionHeaderLogin({ ...rest }) {
 
             const data = await response.json();
             console.log('SHL:86-->data:\n', data);
+            processLogin(data);
         } catch (error) {
             console.log('SHL:88-->error:\n', error);
             // clearSpinner();

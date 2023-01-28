@@ -1,0 +1,48 @@
+[
+    {
+            meal: {
+                mealCount: 0,
+                startTime: '11: 30',
+                cost: '0',
+                deadline: '2023-03-01',
+                message: 'Donations',
+                mealsServed: 0,
+        },
+            status: 'approved',
+            eventRegion: 'east',
+            stateProv: 'GA',
+            coordinator: {
+                name: 'Boomer Twining',
+                id: '59627610-4469-4a16-bbbe-4837098de13f',
+                phone: '4783359428',
+                email: 'midgacrguy@gmail.com',
+        },
+            name: 'Northway Church',
+            geolocation: {
+                lng: '-83.75725490183586',
+                lat: '32.881862290891824',
+        },
+            city: 'Macon',
+            approved: true,
+            graphic: '',
+            affiliate: 'CRP8',
+            eventCompKey:
+                '2023#03#04#GA#3f924542665d6ae5c5941bbe066f3254#59627610-4469-4a16-bbbe-4837098de13f',
+            region: 'us#east',
+            id: '',
+            postalCode: '31210',
+            eventDate: '20230304',
+            contact: {
+                name: 'Sean King',
+                phone: '4782583986',
+                email: 'seankingrcdd@gmail.com',
+        },
+            message: '',
+            uid: '3f924542665d6ae5c5941bbe066f3254',
+            registrations: 0,
+            startTime: '12: 30',
+            attendees: 0,
+            endTime: '16: 30',
+            street: '5915 Zebulon Rd',
+    },
+];

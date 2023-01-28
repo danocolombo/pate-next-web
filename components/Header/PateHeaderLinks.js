@@ -40,18 +40,19 @@ import LineStyle from '@mui/icons-material/LineStyle';
 import Error from '@mui/icons-material/Error';
 // core components
 import PateSystemContext from '../../store/pateSystem-context';
+import { useUserContext } from '../../store/user-context';
 import Button from '/components/CustomButtons/Button.js';
 import SectionHeaderLogin from '../../pages-sections/sections-page/SectionHeaderLogin';
 import styles from '/styles/jss/nextjs-material-pate/components/headerLinksStyle.js';
+import { printObject } from '../../utils/helpers';
 
 const useStyles = makeStyles(styles);
 
 export default function HeaderLinks(props) {
     const pateCTX = useContext(PateSystemContext);
-    const { currentSession, currentUserInfo } = useSessionContext();
+    const { profile, sessionToken } = useUserContext();
     console.log('##########################################');
-    console.log('header:', pateCTX.jwtToken);
-    console.log('currentUserInfo.username:', currentUserInfo?.username);
+    printObject('session token:\n', sessionToken);
     console.log('##########################################');
     const easeInOutQuad = (t, b, c, d) => {
         t /= d / 2;
@@ -107,7 +108,7 @@ export default function HeaderLinks(props) {
     return (
         <List className={classes.list + ' ' + classes.mlAuto}>
             <ListItem className={classes.listItem}>
-                {pateCTX.jwtToken ? (
+                {sessionToken ? (
                     <>
                         <Button round color='primary'>
                             <Link href='/serve'>
