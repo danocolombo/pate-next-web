@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Router from 'next/router';
 import makeStyles from '@mui/styles/makeStyles';
 import Icon from '@mui/material/Icon';
@@ -43,6 +43,7 @@ import styles from '/styles/jss/nextjs-material-pate/pages/componentsSections/se
 const useStyles = makeStyles(styles);
 
 export default function SectionRallyList(props) {
+    const [pubTime, setPubTime] = useState();
     console.log('props:\n', props);
     const rallies = props.rallies.body;
     console.log(rallies[0]);
@@ -50,6 +51,10 @@ export default function SectionRallyList(props) {
     const [activeRotate2, setActiveRotate2] = React.useState('');
     const [activeRotate3, setActiveRotate3] = React.useState('');
     const classes = useStyles();
+    React.useEffect(() => {
+        let x = new Date().toLocaleString();
+        setPubTime(x);
+    });
     React.useEffect(() => {
         if (window) {
             window.addEventListener('resize', addStylesForRotatingCards);
@@ -109,11 +114,18 @@ export default function SectionRallyList(props) {
                                     <RallyRotateSolid rally={rallies[0]} />
                                 </GridItem>
                             </GridContainer>
-                            <div className={classes.timeWrapper}>
-                                <div className={classes.timeStamp}>
-                                    {new Date().toLocaleString()}
+
+                            {pubTime && (
+                                <div
+                                    style={{
+                                        paddingTop: '10px',
+                                        paddingBottom: '10px',
+                                        textAlign: 'center',
+                                    }}
+                                >
+                                    {pubTime}
                                 </div>
-                            </div>
+                            )}
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,7 @@
 import { Auth } from 'aws-amplify';
 
 import REMOTE_DATA from '../../../data/user.json';
+import { printObject } from '../../../utils/helpers';
 async function handler(req, res) {
     const data = req.body;
     const { username, password } = data;
@@ -33,19 +34,63 @@ async function handler(req, res) {
                 // the user is good to go....
                 let currentUserInfo = {};
                 let currentSession = {};
+                let userProfile = {};
+                let userId = '';
                 async function getResultantCognitoData() {
                     await Auth.currentUserInfo().then((u) => {
                         currentUserInfo = u;
+                        userId = u.attributes.sub;
                     });
                     await Auth.currentSession().then((data) => {
                         currentSession = data;
                     });
-                    res.status(200).json({
-                        data: {
-                            currentUserInfo: currentUserInfo,
-                            currentSession: currentSession,
-                        },
-                    });
+                    async function getUserProfile(id) {
+                        try {
+                            await fetch(
+                                'https://j7qty6ijwg.execute-api.us-east-1.amazonaws.com/QA/users',
+                                {
+                                    method: 'POST',
+                                    body: JSON.stringify({
+                                        operation: 'getUser',
+                                        payload: {
+                                            uid: id,
+                                        },
+                                    }),
+                                    headers: {
+                                        'Content-type':
+                                            'application/json; charset=UTF-8',
+                                    },
+                                }
+                            )
+                                .then((response) => response.json())
+                                .then((data) => {
+                                    userProfile = data?.body?.Items[0];
+
+                                    res.status(200).json({
+                                        data: {
+                                            currentUserInfo: currentUserInfo,
+                                            currentSession: currentSession,
+                                            userProfile: userProfile,
+                                        },
+                                    });
+                                });
+                        } catch (error) {
+                            printObject('L79--> DDB error:\n', error);
+                            res.status(400).json({
+                                data: {
+                                    currentUserInfo: currentUserInfo,
+                                    currentSession: currentSession,
+                                    userProfile: {
+                                        error: error)
+                                    },
+                                },
+                            });
+                        }
+
+                        const returnValue = { uid: id };
+                        return returnValue;
+                    }
+                    userProfile = await getUserProfile(userId);
                 }
                 getResultantCognitoData();
 
