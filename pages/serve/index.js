@@ -33,6 +33,7 @@ import CustomInput from '/components/CustomInput/CustomInput.js';
 import ServeOverview from '../../pages-sections/serve/ServeOverview';
 import servePageStyle from '/styles/jss/nextjs-material-pate/pages/servePageStyle.js';
 import ServeEventsCard from '../../pages-sections/serve/ServeEventsCard';
+import SectionServeRallyList from '../../pages-sections/rallies/SectionServeRallyList';
 const useStyles = makeStyles(servePageStyle);
 
 import myRalliesData from '../../data/myRallies.json';
@@ -69,10 +70,18 @@ export default function ServePage({ ...rest }) {
     }, []);
     useEffect(() => {
         setIsLoading(true);
-        printObject('USE_EFFECT:myRalliesData:\n', myRalliesData);
+
         setMyRallies(myRalliesData.body);
         setUpcomingStateRallies(upcomingStateRalliesData.body);
         setPastStateRallies(pastStateRalliesData.body);
+        console.log('#############');
+        console.log('myRallies:', myRalliesData.body.length);
+        console.log(
+            'upcomingStateRallies:',
+            upcomingStateRalliesData.body.length
+        );
+        console.log('pastStateRallies:', pastStateRalliesData.body.length);
+
         setIsLoading(false);
     }, []);
     printObject('SERVE_myRallies:\n', myRallies);
@@ -108,20 +117,20 @@ export default function ServePage({ ...rest }) {
                                     <ServeOverview />
                                 </CardBody>
                                 {myRallies && (
-                                    <ServeEventsCard
-                                        cardTitle='My Events'
+                                    <SectionServeRallyList
+                                        cardTitle='Your Upcoming Events'
                                         rallies={myRallies}
                                     />
                                 )}
                                 {upcomingStateRallies && (
-                                    <ServeEventsCard
-                                        cardTitle='Upcoming Events'
+                                    <SectionServeRallyList
+                                        cardTitle='Upcoming State Events'
                                         rallies={upcomingStateRallies}
                                     />
                                 )}
                                 {pastStateRallies && (
-                                    <ServeEventsCard
-                                        cardTitle='Past Events'
+                                    <SectionServeRallyList
+                                        cardTitle='Past State Events'
                                         rallies={pastStateRallies}
                                     />
                                 )}
