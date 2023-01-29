@@ -15,10 +15,8 @@ import {
 import styles from '/styles/jss/nextjs-material-pate/components/rallyRotateCard';
 const useStyles = makeStyles(styles);
 export default function RallyRotatePic({ rally }) {
-    console.log('RALLY:', rally);
     const { registrations } = useUserContext();
     const [registration, setRegistration] = useState();
-    // const cardDate = dateNumsToLongDayLongMondayDay(rally.eventDate);
     const cardDate = formatEventCardFrontDate(rally.eventDate);
     const cardStartTime = AWSTimeForEventCard(rally.startTime);
     const cardEndTime = AWSTimeForEventCard(rally.endTime);

@@ -73,7 +73,7 @@ export function AWSTimeForEventCard(value) {
         }
     }
     const returnValue = theHour + ':' + mn + ampm;
-    console.log('H:76=>returnValue: ', returnValue);
+    //console.log('H:76=>returnValue: ', returnValue);
     return returnValue;
 }
 export function prettyTime(pateTime) {

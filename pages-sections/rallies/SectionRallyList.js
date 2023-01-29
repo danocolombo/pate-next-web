@@ -1,43 +1,11 @@
 import React, { useState } from 'react';
 import Router from 'next/router';
 import makeStyles from '@mui/styles/makeStyles';
-import Icon from '@mui/material/Icon';
-import HowToRegIcon from '@mui/icons-material/HowToReg';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 // @mui/icons-material
-import Favorite from '@mui/icons-material/Favorite';
-import Share from '@mui/icons-material/Share';
-import ChatBubble from '@mui/icons-material/ChatBubble';
-import Schedule from '@mui/icons-material/Schedule';
-import TrendingUp from '@mui/icons-material/TrendingUp';
-import Subject from '@mui/icons-material/Subject';
-import WatchLater from '@mui/icons-material/WatchLater';
-import People from '@mui/icons-material/People';
-import Business from '@mui/icons-material/Business';
-import Check from '@mui/icons-material/Check';
-import Close from '@mui/icons-material/Close';
-import Delete from '@mui/icons-material/Delete';
-import Bookmark from '@mui/icons-material/Bookmark';
-import Refresh from '@mui/icons-material/Refresh';
-import Receipt from '@mui/icons-material/Receipt';
 // core components
 import GridContainer from '/components/Grid/GridContainer.js';
 import GridItem from '/components/Grid/GridItem.js';
-import Card from '/components/Card/Card.js';
-import CardHeader from '/components/Card/CardHeader.js';
-import CardBody from '/components/Card/CardBody.js';
-import CardFooter from '/components/Card/CardFooter.js';
-import CardAvatar from '/components/Card/CardAvatar.js';
-import Info from '/components/Typography/Info.js';
-import Danger from '/components/Typography/Danger.js';
-import Success from '/components/Typography/Success.js';
-import Warning from '/components/Typography/Warning.js';
-import Rose from '/components/Typography/Rose.js';
-import Button from '/components/CustomButtons/Button.js';
 import RallyRotatePic from '../../components/RallyCard/RallyRotatePic';
-import RallyRotateSolid from '../../components/RallyCard/RallyRotateSolid';
-import RallyFlipSolid from '../../components/RallyCard/RallyFlipSolid';
-import RallyFlipPic from '../../components/RallyCard/RallyFlipPic';
 
 import styles from '/styles/jss/nextjs-material-pate/pages/componentsSections/sectionRallyListCards.js';
 import { printObject } from '../../utils/helpers';
@@ -45,9 +13,8 @@ const useStyles = makeStyles(styles);
 
 export default function SectionRallyList(props) {
     const [pubTime, setPubTime] = useState();
-    console.log('props:\n', props);
     const rallies = props.rallies;
-    printObject('SRL:50==>rallies:\n', rallies);
+    //printObject('SRL:50==>rallies:\n', rallies);
     const [activeRotate1, setActiveRotate1] = React.useState('');
     const [activeRotate2, setActiveRotate2] = React.useState('');
     const [activeRotate3, setActiveRotate3] = React.useState('');

@@ -4,11 +4,6 @@ import PropTypes from 'prop-types';
 import { API, graphqlOperation } from 'aws-amplify';
 import * as queries from '/src/pateGraphQL/queries';
 import makeStyles from '@mui/styles/makeStyles';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-// @mui/icons-material
-import FormatAlignLeft from '@mui/icons-material/FormatAlignLeft';
-import Favorite from '@mui/icons-material/Favorite';
 // core components
 import PateSystemContext from '/store/pateSystem-context';
 import { useRallyContext } from '/store/rally-context';
@@ -19,7 +14,6 @@ import Footer from '/components/Footer/Footer.js';
 import PateFooter from '../pages-sections/footer/PateFooter';
 import GridContainer from '/components/Grid/GridContainer.js';
 import GridItem from '/components/Grid/GridItem.js';
-import Button from '/components/CustomButtons/Button.js';
 // sections for this page
 import SectionText from '/pages-sections/landing-intro/SectionText.js';
 import SectionNewsletter from '../pages-sections/newsletterSection/SectionNewsletter';
@@ -28,13 +22,11 @@ import landingPageStyle from '/styles/jss/nextjs-material-pate/pages/blogPostPag
 
 const useStyles = makeStyles(landingPageStyle);
 
-import rallies from '../data/event.json';
 import { printObject } from '../utils/helpers';
 export default function BlogPostPage() {
-    const DANO = true;
     const pateCTX = useContext(PateSystemContext);
     const { setAvailableRallies, availableRallies } = useRallyContext();
-    console.log('Pate Version: ', pateCTX.pateVersion);
+    console.log('L:36->Pate Version: ', pateCTX.pateVersion);
     React.useEffect(() => {
         window.scrollTo(0, 0);
         document.body.scrollTop = 0;
@@ -54,20 +46,20 @@ export default function BlogPostPage() {
                 if (
                     divisionEvents?.data?.getDivision?.events.items.length > 0
                 ) {
-                    printObject(
-                        'L:54-->events: ',
-                        divisionEvents?.data?.getDivision?.events.items
-                    );
+                    // printObject(
+                    //     'L:54-->events: ',
+                    //     divisionEvents?.data?.getDivision?.events.items
+                    // );
                     setAvailableRallies(
                         divisionEvents.data.getDivision.events.items
                     );
                 } else {
-                    console.log('NOPE');
+                    console.log('L:64--> NO EVENTS TO DISPLAY');
                 }
             })
             .catch((error) => {
                 printObject(
-                    'error getting division events from graphql',
+                    'L:69--> error getting division events from graphql',
                     error
                 );
             });
