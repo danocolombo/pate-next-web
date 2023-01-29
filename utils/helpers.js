@@ -53,6 +53,29 @@ export async function getUniqueId() {
     );
     return digest;
 }
+export function AWSTimeForEventCard(value) {
+    // AWS Time in is 12:30:00-05:00
+    const hr = value.slice(0, 2);
+    const mn = value.slice(3, 5);
+    let theHour = '';
+    let ampm = '';
+    if (parseInt(hr) < 12) {
+        theHour = hr;
+        ampm = 'am';
+    } else {
+        ampm = 'pm';
+        //convert and make sure we have two digits
+        const whole = parseInt(hr);
+        if (whole > 12) {
+            theHour = whole - 12;
+        } else {
+            theHour = whole;
+        }
+    }
+    const returnValue = theHour + ':' + mn + ampm;
+    console.log('H:76=>returnValue: ', returnValue);
+    return returnValue;
+}
 export function prettyTime(pateTime) {
     // will get 24 hour minutes...  1330 = 2L39pm
     //sometimes we may get :

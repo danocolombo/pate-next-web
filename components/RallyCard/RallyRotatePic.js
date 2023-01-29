@@ -1,24 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import makeStyles from '@mui/styles/makeStyles';
 import Card from '/components/Card/Card.js';
 import CardBody from '/components/Card/CardBody.js';
 import Button from '/components/CustomButtons/Button.js';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-
+import { useUserContext } from '../../store/user-context';
 import {
     dateNumsToLongDayLongMondayDay,
     formatEventCardFrontDate,
+    AWSTimeForEventCard,
     prettyTime,
 } from '../../utils/helpers';
 import styles from '/styles/jss/nextjs-material-pate/components/rallyRotateCard';
 const useStyles = makeStyles(styles);
 export default function RallyRotatePic({ rally }) {
     console.log('RALLY:', rally);
+    const { registrations } = useUserContext();
+    const [registration, setRegistration] = useState();
     // const cardDate = dateNumsToLongDayLongMondayDay(rally.eventDate);
     const cardDate = formatEventCardFrontDate(rally.eventDate);
-    const cardStartTime = prettyTime(rally.startTime);
-    const cardEndTime = prettyTime(rally.endTime);
+    const cardStartTime = AWSTimeForEventCard(rally.startTime);
+    const cardEndTime = AWSTimeForEventCard(rally.endTime);
 
     // const stateImage = `/img/states/${rally.stateProv.toLowerCase}.png`;
     const classes = useStyles();
@@ -36,6 +39,18 @@ export default function RallyRotatePic({ rally }) {
             }
         };
     });
+    useEffect(() => {
+        // check if use is registered for event
+        if (registrations) {
+            const regConfirmed = registrations.find(
+                (reg) => reg.event.id === rally.id
+            );
+            if (regConfirmed) {
+                setRegistration(regConfirmed);
+            }
+        }
+    }, []);
+
     const addStylesForRotatingCards = () => {
         var rotatingCards = document.getElementsByClassName(classes.cardRotate);
         for (let i = 0; i < rotatingCards.length; i++) {
@@ -133,9 +148,11 @@ export default function RallyRotatePic({ rally }) {
                                 {cardStartTime}-{cardEndTime}
                             </p>
                             <div className={classes.textCenter}>
-                                <Button round justIcon color='success'>
-                                    <HowToRegIcon />
-                                </Button>
+                                {registration && (
+                                    <Button round justIcon color='success'>
+                                        <HowToRegIcon />
+                                    </Button>
+                                )}
                                 <Button color='info'>
                                     <ExitToAppIcon />
                                     REGISTER...

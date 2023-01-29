@@ -5,6 +5,8 @@ const UserContext = createContext({
     profile: '',
     userInfo: '',
     sessionInfo: '',
+    registrations: [],
+    rallies: [],
 });
 
 export function UserContextProvider(props) {
@@ -12,6 +14,8 @@ export function UserContextProvider(props) {
     const [sessionToken, setSessionToken] = useState();
     const [userInfo, setUserInfo] = useState();
     const [sessionInfo, setSessionInfo] = useState();
+    const [registrations, setRegistrations] = useState([]);
+    const [rallies, setRallies] = useState([]);
 
     async function processLogin(data) {
         setProfile(data.data.userProfile);
@@ -29,6 +33,10 @@ export function UserContextProvider(props) {
         sessionInfo,
         sessionToken,
         setSessionToken,
+        registrations,
+        setRegistrations,
+        rallies,
+        setRallies,
     };
 
     return (
