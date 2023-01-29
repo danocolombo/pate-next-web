@@ -8,17 +8,19 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 import {
     dateNumsToLongDayLongMondayDay,
+    formatEventCardFrontDate,
     prettyTime,
 } from '../../utils/helpers';
 import styles from '/styles/jss/nextjs-material-pate/components/rallyRotateCard';
 const useStyles = makeStyles(styles);
 export default function RallyRotatePic({ rally }) {
     console.log('RALLY:', rally);
-    const cardDate = dateNumsToLongDayLongMondayDay(rally.eventDate);
+    // const cardDate = dateNumsToLongDayLongMondayDay(rally.eventDate);
+    const cardDate = formatEventCardFrontDate(rally.eventDate);
     const cardStartTime = prettyTime(rally.startTime);
     const cardEndTime = prettyTime(rally.endTime);
 
-    const stateImage = `/img/states/${rally.stateProv.toLowerCase()}.png`;
+    // const stateImage = `/img/states/${rally.stateProv.toLowerCase}.png`;
     const classes = useStyles();
     const [activeRotate1, setActiveRotate1] = React.useState('');
     const [activeRotate2, setActiveRotate2] = React.useState('');
@@ -97,7 +99,8 @@ export default function RallyRotatePic({ rally }) {
                                 onClick={(e) => e.preventDefault()}
                             >
                                 <h3 className={classes.cardTitleWhite}>
-                                    {rally.city}, {rally.stateProv}
+                                    {rally.location.city},{' '}
+                                    {rally.location.stateProv}
                                     <br />
                                     {cardDate}
                                 </h3>
@@ -117,11 +120,11 @@ export default function RallyRotatePic({ rally }) {
                                 {rally.name}
                             </h5>
                             <div className={classes.cardRallyAddressLine}>
-                                {rally.street}
+                                {rally.location.street}
                             </div>
                             <div className={classes.cardRallyAddressLine}>
-                                {rally.city},{rally.stateProv}{' '}
-                                {rally.postalCode}
+                                {rally.location.city},{rally.location.stateProv}{' '}
+                                {rally.location.postalCode}
                             </div>
 
                             <p className={classes.cardEventDate}>

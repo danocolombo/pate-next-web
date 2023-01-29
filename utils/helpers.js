@@ -1,5 +1,5 @@
 import { PHONE_REGX } from '../constants/pate';
-import { format } from 'date-fns';
+import { format, convDate } from 'date-fns';
 const SHORT_MONTH = {
     1: 'Jan',
     2: 'Feb',
@@ -228,7 +228,11 @@ export function dateNumToJSDate(dateNum) {
     const javaScriptDate = new Date(year, month - 1, day);
     return javaScriptDate;
 }
-
+export function formatEventCardFrontDate(value) {
+    // converts "2023-04-03" to "Friday, March 3rd"
+    const result = format(new Date(value), 'EEEE, LLLL do');
+    return result;
+}
 export function dateNumsToLongDayLongMondayDay(dateNum) {
     if (!dateNum) {
         return null;

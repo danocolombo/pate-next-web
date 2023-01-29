@@ -40,13 +40,14 @@ import RallyFlipSolid from '../../components/RallyCard/RallyFlipSolid';
 import RallyFlipPic from '../../components/RallyCard/RallyFlipPic';
 
 import styles from '/styles/jss/nextjs-material-pate/pages/componentsSections/sectionRallyListCards.js';
+import { printObject } from '../../utils/helpers';
 const useStyles = makeStyles(styles);
 
 export default function SectionRallyList(props) {
     const [pubTime, setPubTime] = useState();
     console.log('props:\n', props);
-    const rallies = props.rallies.body;
-    console.log(rallies[0]);
+    const rallies = props.rallies;
+    printObject('SRL:50==>rallies:\n', rallies);
     const [activeRotate1, setActiveRotate1] = React.useState('');
     const [activeRotate2, setActiveRotate2] = React.useState('');
     const [activeRotate3, setActiveRotate3] = React.useState('');
@@ -103,16 +104,19 @@ export default function SectionRallyList(props) {
                         </div>
                         <div className={classes.eventsWrapper}>
                             <GridContainer>
-                                <GridItem xs={12} sm={6} md={6} lg={4}>
-                                    <RallyRotatePic rally={rallies[0]} />
-                                </GridItem>
-
-                                <GridItem xs={12} sm={6} md={6} lg={4}>
-                                    <RallyRotateSolid rally={rallies[0]} />
-                                </GridItem>
-                                <GridItem xs={12} sm={6} md={6} lg={4}>
-                                    <RallyRotateSolid rally={rallies[0]} />
-                                </GridItem>
+                                {rallies.map((rally) => {
+                                    return (
+                                        <GridItem
+                                            key={rally.id}
+                                            xs={12}
+                                            sm={6}
+                                            md={6}
+                                            lg={4}
+                                        >
+                                            <RallyRotatePic rally={rally} />
+                                        </GridItem>
+                                    );
+                                })}
                             </GridContainer>
 
                             {pubTime && (

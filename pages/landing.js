@@ -1,6 +1,8 @@
-/*eslint-disable*/ import React from 'react';
+/*eslint-disable*/ import React, { useEffect } from 'react';
 import { useContext } from 'react';
 import PropTypes from 'prop-types';
+import { API, graphqlOperation } from 'aws-amplify';
+import * as queries from '/src/pateGraphQL/queries';
 import makeStyles from '@mui/styles/makeStyles';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -9,6 +11,7 @@ import FormatAlignLeft from '@mui/icons-material/FormatAlignLeft';
 import Favorite from '@mui/icons-material/Favorite';
 // core components
 import PateSystemContext from '/store/pateSystem-context';
+import { useRallyContext } from '/store/rally-context';
 import Header from '/components/Header/PateHeader.js';
 import HeaderLinks from '/components/Header/PateHeaderLinks.js';
 import Parallax from '/components/Parallax/Parallax.js';
@@ -26,13 +29,49 @@ import landingPageStyle from '/styles/jss/nextjs-material-pate/pages/blogPostPag
 const useStyles = makeStyles(landingPageStyle);
 
 import rallies from '../data/event.json';
+import { printObject } from '../utils/helpers';
 export default function BlogPostPage() {
+    const DANO = true;
     const pateCTX = useContext(PateSystemContext);
+    const { setAvailableRallies, availableRallies } = useRallyContext();
     console.log('Pate Version: ', pateCTX.pateVersion);
     React.useEffect(() => {
         window.scrollTo(0, 0);
         document.body.scrollTop = 0;
     });
+    useEffect(() => {
+        //      THIS NEEDS TO GET AVAILABLE EVENTS
+        //      getDivisionEvents
+        const variables = {
+            id: 'fffedde6-5d5a-46f0-a3ac-882a350edc64',
+            eq: 'approved',
+            ge: '2023-01-28',
+        };
+        API.graphql(
+            graphqlOperation(queries.getDivisionEventsByDateStatus, variables)
+        )
+            .then((divisionEvents) => {
+                if (
+                    divisionEvents?.data?.getDivision?.events.items.length > 0
+                ) {
+                    printObject(
+                        'L:54-->events: ',
+                        divisionEvents?.data?.getDivision?.events.items
+                    );
+                    setAvailableRallies(
+                        divisionEvents.data.getDivision.events.items
+                    );
+                } else {
+                    console.log('NOPE');
+                }
+            })
+            .catch((error) => {
+                printObject(
+                    'error getting division events from graphql',
+                    error
+                );
+            });
+    }, []);
     const classes = useStyles();
     return (
         <div>
@@ -61,11 +100,13 @@ export default function BlogPostPage() {
                     </GridContainer>
                 </div>
             </Parallax>
-            <div className={classes.main}>
-                <div className={classes.container}>
-                    <SectionRallyList rallies={rallies} />
+            {availableRallies && (
+                <div className={classes.main}>
+                    <div className={classes.container}>
+                        <SectionRallyList rallies={availableRallies} />
+                    </div>
                 </div>
-            </div>
+            )}
             <div className={classes.main}>
                 <div className={classes.container}>
                     <SectionText />

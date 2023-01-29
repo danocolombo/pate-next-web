@@ -18,7 +18,8 @@ import styles from '/styles/jss/nextjs-material-pate/components/rallyRotateCard'
 const useStyles = makeStyles(styles);
 export default function RallyFlipPic({ rally }) {
     console.log('PIC:', rally);
-    const cardDate = dateNumsToLongDayLongMondayDay(rally.eventDate);
+    // const cardDate = dateNumsToLongDayLongMondayDay(rally.eventDate);
+    const cardDate = rally.eventDate;
     const cardStartTime = prettyTime(rally.startTime);
     const cardEndTime = prettyTime(rally.endTime);
     const classes = useStyles();
