@@ -1,0 +1,139 @@
+{
+    "statusCode": 200,
+    "body": [
+        {
+            "meal": {
+                "mealCount": 0,
+                "startTime": "11:30",
+                "cost": "0",
+                "deadline": "2023-03-01",
+                "message": "Donations",
+                "mealsServed": 0
+            },
+            "status": "approved",
+            "eventRegion": "east",
+            "stateProv": "GA",
+            "coordinator": {
+                "name": "Boomer Twining",
+                "id": "59627610-4469-4a16-bbbe-4837098de13f",
+                "phone": "4783359428",
+                "email": "midgacrguy@gmail.com"
+            },
+            "name": "Northway Church",
+            "geolocation": {
+                "lng": "-83.75725490183586",
+                "lat": "32.881862290891824"
+            },
+            "city": "Macon",
+            "approved": true,
+            "graphic": "",
+            "affiliate": "CRP8",
+            "eventCompKey": "2023#03#04#GA#3f924542665d6ae5c5941bbe066f3254#59627610-4469-4a16-bbbe-4837098de13f",
+            "region": "us#east",
+            "id": "",
+            "postalCode": "31210",
+            "eventDate": "20230304",
+            "contact": {
+                "name": "Sean King",
+                "phone": "4782583986",
+                "email": "seankingrcdd@gmail.com"
+            },
+            "message": "",
+            "uid": "3f924542665d6ae5c5941bbe066f3254",
+            "registrations": 0,
+            "startTime": "12:30",
+            "attendees": 0,
+            "endTime": "16:30",
+            "street": "5915 Zebulon Rd"
+        },
+        {
+            "meal": {
+                "startTime": "1200",
+                "mealCount": 4,
+                "cost": 1.99,
+                "deadline": "20221017",
+                "message": "",
+                "offered": true
+            },
+            "status": "approved",
+            "eventRegion": "FEO",
+            "stateProv": "GA",
+            "coordinator": {
+                "name": "TTLead Account",
+                "id": "3a9ede0a-7951-474c-9e6e-e0437613e50f",
+                "phone": "",
+                "email": "Ttlead@gmail.com"
+            },
+            "name": "Municipal Center",
+            "geolocation": {
+                "lng": "-85.3783",
+                "lat": "32.6454"
+            },
+            "city": "Nabisco",
+            "approved": true,
+            "graphic": "",
+            "affiliate": "FEO",
+            "eventCompKey": "2023#05#17#GA#342275677b8e02f69d51e1912d3da960#3a9ede0a-7951-474c-9e6e-e0437613e50f",
+            "region": "us#east#south",
+            "id": "",
+            "postalCode": "12345",
+            "eventDate": "20230517",
+            "contact": {
+                "name": "Bobby Walker",
+                "phone": "1234567890",
+                "email": "bw@ritzy.com"
+            },
+            "message": "",
+            "uid": "342275677b8e02f69d51e1912d3da960",
+            "registrations": 8,
+            "startTime": "1200",
+            "attendees": 0,
+            "endTime": "1600",
+            "street": "123 Cracker Blvd."
+        },
+        {
+            "meal": {
+                "startTime": "1200",
+                "cost": 2,
+                "deadline": "20221125",
+                "message": "",
+                "offered": true
+            },
+            "status": "approved",
+            "eventRegion": "FEO",
+            "stateProv": "GA",
+            "coordinator": {
+                "name": "TTLead Account",
+                "id": "3a9ede0a-7951-474c-9e6e-e0437613e50f",
+                "phone": "",
+                "email": "Ttlead@gmail.com"
+            },
+            "name": "Snickerdoodle",
+            "geolocation": {
+                "lng": "-84.67463560402392",
+                "lat": "32.870432317313224"
+            },
+            "city": "Home",
+            "approved": true,
+            "graphic": "",
+            "affiliate": "FEO",
+            "eventCompKey": "2023#05#26#GA#73402aa255522203c79b5e8b58a65c1d#3a9ede0a-7951-474c-9e6e-e0437613e50f",
+            "region": "us#east#south",
+            "id": "",
+            "postalCode": "23215",
+            "eventDate": "20230526",
+            "contact": {
+                "name": "Wally Wells",
+                "phone": "7063345678",
+                "email": "ww@gotham.net"
+            },
+            "message": "",
+            "uid": "73402aa255522203c79b5e8b58a65c1d",
+            "registrations": 0,
+            "startTime": "1300",
+            "attendees": 0,
+            "endTime": "1700",
+            "street": "123 Mom’s Way"
+        }
+    ]
+}
