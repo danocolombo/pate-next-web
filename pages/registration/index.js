@@ -21,6 +21,7 @@ import Favorite from '@mui/icons-material/Favorite';
 // core components
 import Header from '/components/Header/PateHeader.js';
 import HeaderLinks from '/components/Header/PateHeaderLinks.js';
+import People from "@mui/icons-material/People";
 import Footer from '/components/Footer/Footer.js';
 import PateFooter from '../../pages-sections/footer/PateFooter';
 import GridContainer from '/components/Grid/GridContainer.js';
@@ -31,10 +32,10 @@ import CardBody from '/components/Card/CardBody.js';
 import InfoArea from '/components/InfoArea/InfoArea.js';
 import CustomInput from '/components/CustomInput/CustomInput.js';
 import ServeOverview from '../../pages-sections/serve/ServeOverview';
-import servePageStyle from '/styles/jss/nextjs-material-pate/pages/servePageStyle.js';
+import registrationPageStyle from '/styles/jss/nextjs-material-pate/pages/registrationPageStyle.js';
 import ServeEventsCard from '../../pages-sections/serve/ServeEventsCard';
 import SectionServeRallyList from '../../pages-sections/rallies/SectionServeRallyList';
-const useStyles = makeStyles(servePageStyle);
+const useStyles = makeStyles(registrationPageStyle);
 
 import upcomingStateRalliesData from '../../data/upcomingStateRallies.json';
 import pastStateRalliesData from '../../data/pastStateRallies.json';
@@ -70,12 +71,53 @@ export default function RegistrationPage({ ...rest }) {
                     backgroundPosition: 'top center',
                 }}
             >
-                <InfoArea
-                    title="Registration"
-                        description="Do what you do..."
-                        icon={Timeline}
-                        iconColor="rose"
-                />
+                <div className={classes.section}>
+      <div className={classes.container}>
+        
+        <Card pricing>
+            <CardBody pricing>
+            <h1 style={{color: 'black'}}>Registration</h1> 
+            <div>
+                <div className={classes.cardCategory + " " + classes.CardBody}>
+                    Northway Church
+                </div>
+                <div className={classes.cardDescription}>Description</div>
+
+            </div>
+
+
+                      <h6
+                        className={
+                          classes.cardCategory +
+                          " " +
+                          classes.cardDescription +
+                          " " +
+                          classes.marginBottom20
+                        }
+                      >
+                        SMALL COMPANY
+                      </h6>
+                      <div className={classes.iconWrapper}>
+                        <People className={classes.iconInfo} />
+                      </div>
+                      <h3
+                        className={
+                          classes.cardTitle + " " + classes.marginTop30
+                        }
+                      >
+                        $29
+                      </h3>
+                      <p className={classes.cardDescription}>
+                        This is good if your company size is between 2 and 10
+                        Persons.
+                      </p>
+                      <Button round color="info">
+                        Choose plan
+                      </Button>
+                    </CardBody>
+                  </Card>
+        </div>
+                </div>
                 <div className={classes.container}>
                     <div>Start Here...</div>
                 </div>
