@@ -1,14 +1,19 @@
 import {
     primaryColor,
     grayColor,
+    cobaltColor,
+    cobaltCardHeader,
     container,
     cardTitle,
+    rallyTitle,
+    rallyAddress,
+    rallyDateTime,
     whiteColor,
     blackColor,
     hexToRgb,
-} from '/styles/jss/nextjs-material-kit-pro.js';
+} from '/styles/jss/nextjs-material-pate.js';
 
-import customCheckboxRadioSwitchStyle from '/styles/jss/nextjs-material-kit-pro/customCheckboxRadioSwitchStyle.js';
+import customCheckboxRadioSwitchStyle from '/styles/jss/nextjs-material-pate/customCheckboxRadioSwitchStyle.js';
 
 const signupPageStyle = {
     container: {
@@ -67,6 +72,23 @@ const signupPageStyle = {
         textDecoration: 'none',
         textAlign: 'center !important',
         marginBottom: '0.75rem',
+    },
+    rallyName: {
+        fontSize: "2rem",
+        fontWeight: "600",
+        color: cobaltColor[2],
+    },
+    rallyAddressWrapper: {
+        padding: '10px',
+    },
+    rallyAddress: {
+        fontSize: "1.5rem",
+        fontWeight: "400",
+    },
+    rallyDateTime: {
+        fontSize: "18px",
+        fontWeight: "600",
+        color: cobaltColor[3],
     },
     ...customCheckboxRadioSwitchStyle,
     socials: {

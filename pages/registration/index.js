@@ -37,8 +37,6 @@ import ServeEventsCard from '../../pages-sections/serve/ServeEventsCard';
 import SectionServeRallyList from '../../pages-sections/rallies/SectionServeRallyList';
 const useStyles = makeStyles(registrationPageStyle);
 
-import upcomingStateRalliesData from '../../data/upcomingStateRallies.json';
-import pastStateRalliesData from '../../data/pastStateRallies.json';
 import { printObject } from '../../utils/helpers';
 
 export default function RegistrationPage({ ...rest }) {
@@ -78,21 +76,19 @@ export default function RegistrationPage({ ...rest }) {
             <CardBody pricing>
             <h1 style={{color: 'black'}}>Registration</h1> 
             <div>
-                <div className={classes.cardCategory + " " + classes.CardBody}>
+                <div className={classes.rallyName}>
                     Northway Church
                 </div>
-                <div className={classes.cardDescription}>Description</div>
+                <div className={classes.rallyAddressWrapper}>
+                <div className={classes.rallyAddress}>123 Main St.</div>
+                </div>
 
             </div>
 
 
                       <h6
                         className={
-                          classes.cardCategory +
-                          " " +
-                          classes.cardDescription +
-                          " " +
-                          classes.marginBottom20
+                          classes.rallyAddress
                         }
                       >
                         SMALL COMPANY
