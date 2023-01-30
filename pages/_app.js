@@ -30,6 +30,7 @@ import config from '../src/aws-exports';
 import { PateSystemContextProvider } from '/store/pateSystem-context';
 import { SessionContextProvider } from '/store/session-context';
 import { UserContextProvider } from '/store/user-context';
+import { RallyContextProvider } from '/store/rally-context';
 import PageChange from '/components/PageChange/PageChange.js';
 
 import '/styles/scss/nextjs-material-kit-pro.scss';
@@ -117,19 +118,21 @@ export default class MyApp extends App {
                         name='viewport'
                         content='width=device-width, initial-scale=1, shrink-to-fit=no'
                     />
-                    <script src='https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE' />
+                    {/* <script src='https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE' /> */}
                     <title>P8 Rallies</title>
                 </Head>
                 <PateSystemContextProvider>
                     <SessionContextProvider>
                         <UserContextProvider>
-                            <ThemeProvider theme={theme}>
-                                <StyledEngineProvider injectFirst>
-                                    <PateSystemContextProvider>
-                                        <Component {...pageProps} />
-                                    </PateSystemContextProvider>
-                                </StyledEngineProvider>
-                            </ThemeProvider>
+                            <RallyContextProvider>
+                                <ThemeProvider theme={theme}>
+                                    <StyledEngineProvider injectFirst>
+                                        <PateSystemContextProvider>
+                                            <Component {...pageProps} />
+                                        </PateSystemContextProvider>
+                                    </StyledEngineProvider>
+                                </ThemeProvider>
+                            </RallyContextProvider>
                         </UserContextProvider>
                     </SessionContextProvider>
                 </PateSystemContextProvider>

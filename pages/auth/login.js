@@ -28,12 +28,14 @@ import Link from 'next/link';
 import PateSystemContext from '../../store/pateSystem-context';
 import SessionContext from '../../store/session-context';
 import { useSessionContext } from '../../store/session-context';
+import { useUserContext } from '../../store/user-context';
 const useStyles = makeStyles(loginPageStyle);
 
 export default function LoginPage() {
     const pateCTX = useContext(PateSystemContext);
     const sessionCTX = useContext(SessionContext);
     const { setCurrentSession, setCurrentUserInfo } = useSessionContext();
+    const { setProfile } = useUserContext();
     console.log('Pate Version:', pateCTX.pateVersion);
     console.log('JWT Token:', pateCTX.jwtToken);
     const [username, setUsername] = useState('');
@@ -127,7 +129,15 @@ export default function LoginPage() {
 
             // clearSpinner();
             // userIsRegistered ? history.push('/') : history.push('/profile');
-
+            const response = await fetch('/api/auth/user', {
+                method: 'POST',
+                body: JSON.stringify({ id: currentUserInfo.attributes.sub }),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            const data = await response.json();
+            await setProfile(data);
             Router.replace('/');
         } catch (error) {
             switch (error) {

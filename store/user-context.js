@@ -1,21 +1,41 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect, useContext } from 'react';
+import { printObject } from '../utils/helpers';
 
 const UserContext = createContext({
-    pateVersion: '',
-    jwtToken: '',
+    profile: '',
+    userInfo: '',
+    sessionInfo: '',
+    registrations: [],
+    rallies: [],
 });
 
 export function UserContextProvider(props) {
-    const [pateVersion, setPateVersion] = useState('1.1.0');
-    const [jwtToken, setJwtToken] = useState();
+    const [profile, setProfile] = useState();
+    const [sessionToken, setSessionToken] = useState();
+    const [userInfo, setUserInfo] = useState();
+    const [sessionInfo, setSessionInfo] = useState();
+    const [registrations, setRegistrations] = useState([]);
+    const [rallies, setRallies] = useState([]);
 
-    const setToken = (value) => {
-        setJwtToken(value);
-    };
+    async function processLogin(data) {
+        setProfile(data.data.userProfile);
+        setUserInfo(data.data.currentUserInfo);
+        setSessionInfo(data.data.currentSession);
+        setSessionToken(data.data.currentSession.idToken.jwtToken);
+    }
+
     const context = {
-        pateVersion,
-        jwtToken,
-        setToken,
+        profile,
+        setProfile,
+        processLogin,
+        userInfo,
+        sessionInfo,
+        sessionToken,
+        setSessionToken,
+        registrations,
+        setRegistrations,
+        rallies,
+        setRallies,
     };
 
     return (
@@ -26,3 +46,4 @@ export function UserContextProvider(props) {
 }
 
 export default UserContext;
+export const useUserContext = () => useContext(UserContext);

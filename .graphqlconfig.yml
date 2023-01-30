@@ -1,6 +1,6 @@
 projects:
-  jericho:
-    schemaPath: amplify/backend/api/jericho/build/schema.graphql
+  patemobile:
+    schemaPath: amplify/backend/api/patemobile/build/schema.graphql
     includes:
       - src/graphql/**/*.js
     excludes:
