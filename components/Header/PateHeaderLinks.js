@@ -120,11 +120,7 @@ export default function HeaderLinks(props) {
                                 <a className={{ color: 'black' }}>Profile</a>
                             </Link>
                         </Button>
-                        <Button round color='primary'>
-                            <Link href='/profile'>
-                                <a className={{ color: 'black' }}>Profile</a>
-                            </Link>
-                        </Button>
+
                         <Button round color='logout' onClick={signOutHandler}>
                             Logout
                         </Button>

@@ -17,6 +17,7 @@ import Favorite from '@mui/icons-material/Favorite';
 import Header from '/components/Header/PateHeader.js';
 import Footer from '/components/Footer/Footer.js';
 import ProfileForm from '../pages-sections/profile/SectionProfileForm';
+import SectionRegistrationList from '../pages-sections/registrations/SectionRegistrationsList';
 import PateFooter from '../pages-sections/footer/PateFooter';
 import GridContainer from '/components/Grid/GridContainer.js';
 import GridItem from '/components/Grid/GridItem.js';
@@ -86,6 +87,9 @@ export default function ProfilePage({ ...rest }) {
                         )}
                     >
                         <ProfileForm />
+                    </div>
+                    <div>
+                        <SectionRegistrationList />
                     </div>
                     <div className={classes.profileTabs}>
                         <NavPills
