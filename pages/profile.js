@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 // nodejs library that concatenates classes
 import classNames from 'classnames';
 import makeStyles from '@mui/styles/makeStyles';
+
 import Tooltip from '@mui/material/Tooltip';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -70,7 +71,7 @@ export default function ProfilePage({ ...rest }) {
                             <div className={classes.profile}>
                                 <div>
                                     <img
-                                        src='/img/faces/christian.jpg'
+                                        src='/img/faces/default.png'
                                         alt='...'
                                         className={imageClasses}
                                     />

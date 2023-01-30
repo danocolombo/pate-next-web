@@ -22,7 +22,6 @@ export function UserContextProvider(props) {
         setUserInfo(data.data.currentUserInfo);
         setSessionInfo(data.data.currentSession);
         setSessionToken(data.data.currentSession.idToken.jwtToken);
-        printObject('UC:19-->data:\n', data);
     }
 
     const context = {

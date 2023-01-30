@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useUserContext } from '/store/user-context';
 import makeStyles from '@mui/styles/makeStyles';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
@@ -15,19 +16,30 @@ import CustomInput from '/components/CustomInput/CustomInput.js';
 import Face from '@mui/icons-material/Face';
 import Email from '@mui/icons-material/Email';
 import Check from '@mui/icons-material/Check';
+import { printObject } from '/utils/helpers';
 
 import profilePageStyle from '/styles/jss/nextjs-material-pate/pages/profileSectionSections/profileFormStyle.js';
 
 const useStyles = makeStyles(profilePageStyle);
 function ProfileForm(props) {
     const classes = useStyles();
-    const [firstName, setFirstName] = useState(props.firstName || '');
-    const [lastName, setLastName] = useState(props.lastName || '');
-    const [phone, setPhone] = useState(props.phone || '');
-    const [street, setStreet] = useState(props.street || '');
-    const [city, setCity] = useState(props.city || '');
-    const [stateProv, setStateProv] = useState(props.stateProv || '');
-    const [postalCode, setPostalCode] = useState(props.postalCode || '');
+    const profile = useUserContext();
+    const userProfile = profile.profile;
+    const [firstName, setFirstName] = useState(
+        userProfile?.firstName || 'FIRST'
+    );
+    const [lastName, setLastName] = useState(userProfile?.lastName || 'LAST');
+    const [phone, setPhone] = useState(userProfile?.phone || '(000) 000-0000');
+    const [street, setStreet] = useState(
+        userProfile?.residence?.street || 'STREET'
+    );
+    const [city, setCity] = useState(userProfile?.residence?.city || 'CITY');
+    const [stateProv, setStateProv] = useState(
+        userProfile?.residence?.stateProv || 'GA'
+    );
+    const [postalCode, setPostalCode] = useState(
+        userProfile?.residence?.postalCode || '00000'
+    );
     const handleStateProv = (event) => {
         setStateProv(event.target.value);
     };
@@ -48,6 +60,7 @@ function ProfileForm(props) {
                                             }}
                                             inputProps={{
                                                 id: 'firstName',
+                                                value: firstName,
                                                 placeholder: 'First name',
                                             }}
                                         />
@@ -59,6 +72,7 @@ function ProfileForm(props) {
                                             }}
                                             inputProps={{
                                                 id: 'lastName',
+                                                value: lastName,
                                                 placeholder: 'Last name',
                                             }}
                                         />
@@ -70,6 +84,7 @@ function ProfileForm(props) {
                                             }}
                                             inputProps={{
                                                 id: 'phoneNumber',
+                                                value: phone,
                                                 placeholder: 'Phone number',
                                             }}
                                         />
@@ -81,6 +96,7 @@ function ProfileForm(props) {
                                             }}
                                             inputProps={{
                                                 id: 'street',
+                                                value: street,
                                                 placeholder: 'Street address',
                                             }}
                                         />
@@ -92,6 +108,7 @@ function ProfileForm(props) {
                                             }}
                                             inputProps={{
                                                 id: 'city',
+                                                value: city,
                                                 placeholder: 'City',
                                             }}
                                         />
@@ -106,6 +123,7 @@ function ProfileForm(props) {
                                             onChange={handleStateProv}
                                             inputProps={{
                                                 name: 'stateProv',
+                                                value: stateProv,
                                                 id: 'stateProv',
                                             }}
                                         >
@@ -123,9 +141,9 @@ function ProfileForm(props) {
                                                     selected:
                                                         classes.selectMenuItemSelected,
                                                 }}
-                                                value='2'
+                                                value='GA'
                                             >
-                                                Paris
+                                                GA
                                             </MenuItem>
                                             <MenuItem
                                                 classes={{
@@ -156,6 +174,7 @@ function ProfileForm(props) {
                                             }}
                                             inputProps={{
                                                 id: 'postalCode',
+                                                value: postalCode,
                                                 placeholder: 'Postal code',
                                             }}
                                         />
