@@ -1,10 +1,13 @@
-import { Auth } from 'aws-amplify';
-
+import React, { useContext } from 'react';
+import { Auth, API, graphqlOperation } from 'aws-amplify';
+import * as queries from '/src/pateGraphQL/queries';
 import REMOTE_DATA from '../../../data/user.json';
 import { printObject } from '../../../utils/helpers';
+
 async function handler(req, res) {
     const data = req.body;
     const { username, password } = data;
+
     let cognitoUser = {};
     let profile = {};
 
@@ -44,53 +47,87 @@ async function handler(req, res) {
                     await Auth.currentSession().then((data) => {
                         currentSession = data;
                     });
-                    async function getUserProfile(id) {
-                        try {
-                            await fetch(
-                                'https://j7qty6ijwg.execute-api.us-east-1.amazonaws.com/QA/users',
-                                {
-                                    method: 'POST',
-                                    body: JSON.stringify({
-                                        operation: 'getUser',
-                                        payload: {
-                                            uid: id,
-                                        },
-                                    }),
-                                    headers: {
-                                        'Content-type':
-                                            'application/json; charset=UTF-8',
-                                    },
-                                }
-                            )
-                                .then((response) => response.json())
-                                .then((data) => {
-                                    userProfile = data?.body?.Items[0];
-
-                                    res.status(200).json({
-                                        data: {
-                                            currentUserInfo: currentUserInfo,
-                                            currentSession: currentSession,
-                                            userProfile: userProfile,
-                                        },
-                                    });
-                                });
-                        } catch (error) {
-                            printObject('L79--> DDB error:\n', error);
-                            res.status(400).json({
+                    const variables = {
+                        id: userId,
+                    };
+                    API.graphql(
+                        graphqlOperation(queries.getProfileBySub, variables)
+                    )
+                        .then((gqlProfile) => {
+                            //*  This will be an array, need to get [0]
+                            if (gqlProfile?.data?.listUsers?.items.length > 0) {
+                                printObject(
+                                    'L:60-->gqlProfile: ',
+                                    gqlProfile?.data?.listUsers?.items[0]
+                                );
+                                userProfile =
+                                    gqlProfile.data.listUsers.items[0];
+                            } else {
+                                userProfile = {};
+                            }
+                            res.status(200).json({
                                 data: {
                                     currentUserInfo: currentUserInfo,
                                     currentSession: currentSession,
-                                    userProfile: {
-                                        error: error,
-                                    },
+                                    userProfile: userProfile,
                                 },
                             });
-                        }
+                        })
+                        .catch((error) => {
+                            printObject(
+                                'L:69--> error getting division events from graphql',
+                                error
+                            );
+                            userProfile = {};
+                        });
 
-                        const returnValue = { uid: id };
-                        return returnValue;
-                    }
-                    userProfile = await getUserProfile(userId);
+                    // async function getUserProfile(id) {
+                    //     try {
+                    //         await fetch(
+                    //             'https://j7qty6ijwg.execute-api.us-east-1.amazonaws.com/QA/users',
+                    //             {
+                    //                 method: 'POST',
+                    //                 body: JSON.stringify({
+                    //                     operation: 'getUser',
+                    //                     payload: {
+                    //                         uid: id,
+                    //                     },
+                    //                 }),
+                    //                 headers: {
+                    //                     'Content-type':
+                    //                         'application/json; charset=UTF-8',
+                    //                 },
+                    //             }
+                    //         )
+                    //             .then((response) => response.json())
+                    //             .then((data) => {
+                    //                 userProfile = data?.body?.Items[0];
+
+                    //                 res.status(200).json({
+                    //                     data: {
+                    //                         currentUserInfo: currentUserInfo,
+                    //                         currentSession: currentSession,
+                    //                         userProfile: userProfile,
+                    //                     },
+                    //                 });
+                    //             });
+                    //     } catch (error) {
+                    //         printObject('L79--> DDB error:\n', error);
+                    //         res.status(400).json({
+                    //             data: {
+                    //                 currentUserInfo: currentUserInfo,
+                    //                 currentSession: currentSession,
+                    //                 userProfile: {
+                    //                     error: error,
+                    //                 },
+                    //             },
+                    //         });
+                    //     }
+
+                    //     const returnValue = { uid: id };
+                    //     return returnValue;
+                    // }
+                    // userProfile = await getUserProfile(userId);
                 }
                 getResultantCognitoData();
 

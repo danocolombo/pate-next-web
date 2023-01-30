@@ -46,6 +46,7 @@ const useStyles = makeStyles(styles);
 export default function SectionRallyList(props) {
     const [pubTime, setPubTime] = useState();
     const rallies = props.rallies;
+    printObject('SSRL:50==>rallies:\n', rallies);
     const [activeRotate1, setActiveRotate1] = React.useState('');
     const [activeRotate2, setActiveRotate2] = React.useState('');
     const [activeRotate3, setActiveRotate3] = React.useState('');
@@ -109,17 +110,16 @@ export default function SectionRallyList(props) {
                                     {rallies.map((rally) => {
                                         return (
                                             <GridItem
-                                                key={rally.uid}
+                                                key={rally.id}
                                                 xs={12}
                                                 sm={6}
                                                 md={6}
                                                 lg={4}
                                             >
                                                 <RallyRotatePic
-                                                    key={rally.uid}
+                                                    key={rally.id}
                                                     rally={rally}
                                                 />
-                                                )
                                             </GridItem>
                                         );
                                     })}

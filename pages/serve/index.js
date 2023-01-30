@@ -42,7 +42,7 @@ import pastStateRalliesData from '../../data/pastStateRallies.json';
 import { printObject } from '../../utils/helpers';
 
 export default function ServePage({ ...rest }) {
-    const { sessionToken } = useUserContext();
+    const { sessionToken, profile } = useUserContext();
     const [isLoading, setIsLoading] = useState(false);
     const [myRallies, setMyRallies] = useState([]);
     const [upcomingStateRallies, setUpcomingStateRallies] = useState([]);
@@ -116,13 +116,13 @@ export default function ServePage({ ...rest }) {
                                 <CardBody>
                                     <ServeOverview />
                                 </CardBody>
-                                {myRallies && (
+                                {profile?.events && (
                                     <SectionServeRallyList
                                         cardTitle='Your Upcoming Events'
-                                        rallies={myRallies}
+                                        rallies={profile?.events.items}
                                     />
                                 )}
-                                {upcomingStateRallies && (
+                                {/* {upcomingStateRallies && (
                                     <SectionServeRallyList
                                         cardTitle='Upcoming State Events'
                                         rallies={upcomingStateRallies}
@@ -133,7 +133,7 @@ export default function ServePage({ ...rest }) {
                                         cardTitle='Past State Events'
                                         rallies={pastStateRallies}
                                     />
-                                )}
+                                )} */}
                             </Card>
                         </GridItem>
                     </GridContainer>

@@ -1511,6 +1511,66 @@ export const getUser = /* GraphQL */ `
         }
     }
 `;
+export const getProfileBySub = /* GraphQL */ `
+    query MyQuery($id: String) {
+        listUsers(filter: { sub: { eq: $id } }) {
+            items {
+                id
+                sub
+                firstName
+                lastName
+                username
+                email
+                phone
+                residence {
+                    street
+                    city
+                    stateProv
+                    postalCode
+                }
+                registrations {
+                    items {
+                        id
+                        event {
+                            id
+                            name
+                            eventDate
+                            location {
+                                city
+                                stateProv
+                            }
+                        }
+                    }
+                }
+                affiliations {
+                    items {
+                        id
+                        role
+                        status
+                    }
+                }
+                defaultDivision {
+                    id
+                    code
+                }
+                events {
+                    items {
+                        id
+                        eventDate
+                        startTime
+                        endTime
+                        name
+                        location {
+                            city
+                            stateProv
+                        }
+                    }
+                }
+            }
+        }
+    }
+`;
+
 export const listUsers = /* GraphQL */ `
     query ListUsers(
         $filter: ModelUserFilterInput

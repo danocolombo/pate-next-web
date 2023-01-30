@@ -80,7 +80,10 @@ export default function SectionRallyList(props) {
                                             md={6}
                                             lg={4}
                                         >
-                                            <RallyRotatePic rally={rally} />
+                                            <RallyRotatePic
+                                                key={rally.id}
+                                                rally={rally}
+                                            />
                                         </GridItem>
                                     );
                                 })}
