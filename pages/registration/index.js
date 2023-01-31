@@ -21,12 +21,13 @@ import Favorite from '@mui/icons-material/Favorite';
 // core components
 import Header from '/components/Header/PateHeader.js';
 import HeaderLinks from '/components/Header/PateHeaderLinks.js';
-import People from "@mui/icons-material/People";
+import People from '@mui/icons-material/People';
 import Footer from '/components/Footer/Footer.js';
 import PateFooter from '../../pages-sections/footer/PateFooter';
 import GridContainer from '/components/Grid/GridContainer.js';
 import GridItem from '/components/Grid/GridItem.js';
 import Button from '/components/CustomButtons/Button.js';
+import TextField from '@material-ui/core/TextField';
 import Card from '/components/Card/Card.js';
 import CardBody from '/components/Card/CardBody.js';
 import InfoArea from '/components/InfoArea/InfoArea.js';
@@ -42,12 +43,14 @@ import { printObject } from '../../utils/helpers';
 export default function RegistrationPage({ ...rest }) {
     const { sessionToken, profile } = useUserContext();
     const [isLoading, setIsLoading] = useState(false);
-    
+    const [registrationCount, setRegistrationCount] = useState(0);
+    const [totalBill, setTotalBill] = useState(0);
+
     useEffect(() => {
         window.scrollTo(0, 0);
         document.body.scrollTop = 0;
     });
-    
+
     const classes = useStyles();
     if (isLoading) {
         return <div>Loading...</div>;
@@ -70,49 +73,68 @@ export default function RegistrationPage({ ...rest }) {
                 }}
             >
                 <div className={classes.section}>
-      <div className={classes.container}>
-        
-        <Card pricing>
-            <CardBody pricing>
-            <h1 style={{color: 'black'}}>Registration</h1> 
-            <div>
-                <div className={classes.rallyName}>
-                    Northway Church
-                </div>
-                <div className={classes.rallyAddressWrapper}>
-                <div className={classes.rallyAddress}>123 Main St.</div>
-                </div>
+                    <div className={classes.container}>
+                        <Card pricing>
+                            <CardBody pricing>
+                                <h1 style={{ color: 'black' }}>Registration</h1>
+                                <div>
+                                    <div className={classes.rallyName}>
+                                        Northway Church
+                                    </div>
+                                    <div
+                                        className={classes.rallyAddressWrapper}
+                                    >
+                                        <div className={classes.rallyAddress}>
+                                            123 Main St.
+                                        </div>
+                                        <div className={classes.rallyAddress}>
+                                            Atlanta, GA 31100
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <TextField
+                                            type='number'
+                                            name='totalBill'
+                                            label='Attendees'
+                                            variant='filled'
+                                            value={registrationCount}
+                                            style={{
+                                                width: '70px',
+                                            }}
+                                            onChange={(event) =>
+                                                setRegistrationCount(
+                                                    event.target.value
+                                                )
+                                            }
+                                        />
+                                    </div>
+                                </div>
 
-            </div>
-
-
-                      <h6
-                        className={
-                          classes.rallyAddress
-                        }
-                      >
-                        SMALL COMPANY
-                      </h6>
-                      <div className={classes.iconWrapper}>
-                        <People className={classes.iconInfo} />
-                      </div>
-                      <h3
-                        className={
-                          classes.cardTitle + " " + classes.marginTop30
-                        }
-                      >
-                        $29
-                      </h3>
-                      <p className={classes.cardDescription}>
-                        This is good if your company size is between 2 and 10
-                        Persons.
-                      </p>
-                      <Button round color="info">
-                        Choose plan
-                      </Button>
-                    </CardBody>
-                  </Card>
-        </div>
+                                <h6 className={classes.rallyAddress}>
+                                    SMALL COMPANY
+                                </h6>
+                                <div className={classes.iconWrapper}>
+                                    <People className={classes.iconInfo} />
+                                </div>
+                                <h3
+                                    className={
+                                        classes.cardTitle +
+                                        ' ' +
+                                        classes.marginTop30
+                                    }
+                                >
+                                    $29
+                                </h3>
+                                <p className={classes.cardDescription}>
+                                    This is good if your company size is between
+                                    2 and 10 Persons.
+                                </p>
+                                <Button round color='info'>
+                                    Choose plan
+                                </Button>
+                            </CardBody>
+                        </Card>
+                    </div>
                 </div>
                 <div className={classes.container}>
                     <div>Start Here...</div>
